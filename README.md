@@ -70,4 +70,12 @@ archivos de resultados. Para que el enlace sea estable, recomendamos:
 
 ## Licencia
 
-Por definir (ver `LICENSE`).
+Código, datos generados y paper bajo licencia MIT (ver [`LICENSE`](LICENSE)).
+
+Esta licencia **no cubre** el contenido de Pokémon Blue: los nombres de
+movimientos, tipos y valores de juego usados para construir los estados de
+batalla son propiedad de Nintendo / Creatures Inc. / GAME FREAK inc. y se
+usan solo con fines educativos. El ROM no se incluye ni se distribuye en
+este repositorio. Los modelos evaluados (Qwen2.5, Llama 3.2, Phi-3.5-mini)
+se referencian por nombre bajo sus propias licencias; sus pesos no se
+redistribuyen aquí.
