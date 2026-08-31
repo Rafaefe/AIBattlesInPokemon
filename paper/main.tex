@@ -68,10 +68,10 @@
 {\color{white}\bfseries\LARGE Modelos de lenguaje peque\~nos para decidir en combate en Pok\'emon Blue}\\[1.1mm]
 {\color{white!85}\large El prompting estructurado arregla el formato de la acci\'on, no la calidad de la decisi\'on}\\[2mm]
 {\color{white!75}\footnotesize
-Deliverable 1 \ \textbullet\ \ Generative Artificial Intelligence (580694), Primavera 2026 \ \textbullet\ \ Universidad de Concepci\'on}\\[1.4mm]
-{\footnotesize\color{white!85}Equipo:} \ph{Nombre 1 \textbullet\ Nombre 2 \textbullet\ Nombre 3 \textbullet\ Nombre 4}
+Deliverable 1 \ \textbullet\ \ Generative Artificial Intelligence (580694) \ \textbullet\ \ Universidad de Concepci\'on}\\[1.4mm]
+{\footnotesize\color{white!85}Equipo:} \ph{Pedro Dañobeytia \textbullet\ Rafael Fernández \textbullet\ Cristian Gonzalez \textbullet\ Daniel Gonzalez}
 \hfill
-{\footnotesize\color{white!85}Repositorio:} \ph{github.com/usuario/repositorio}
+{\footnotesize\color{white!85}Repositorio:} \ph{github.com/Rafaefe/AIBattlesInPokemon}
 \end{tcolorbox}
 
 \vspace{1.5mm}
@@ -198,7 +198,7 @@ ground truth = MOVE\_1 \ \ \ \ modelo = \textcolor{crimson}{\textbf{MOVE\_2}}}\\
 \textbf{v2.} Ambos prompts exigen el mismo contrato \texttt{MOVE\_N}, as\'i la \'unica diferencia es el andamiaje de razonamiento; $n=50$ estados, cada uno repetido con sus movimientos \textbf{permutados}, lo que mide el sesgo de posici\'on de forma directa.
 
 % ==================================================== 6. MODELOS ==========
-\heading{6. Modelos propuestos (todos muy por debajo de 8B)}
+\heading{6. Modelos propuestos}
 {\centering
 \begin{tabular}{@{}lrrrrr@{}}
 \toprule
@@ -217,7 +217,7 @@ Phi-3.5-mini-instr. & 3,8B & \textbf{69,0} & n.r. & \textbf{86,2} & 7,6\,GB\\
 \item \textbf{IFEval: seguimiento de instrucciones.} Mide obediencia a formatos restringidos, que es lo que necesita el controlador. Con el prompt estructurado Qwen ya alcanza 96,7\,\% pese a su 42,5, as\'i que el formato \emph{no} es lo que separa a los candidatos.
 \item \textbf{GSM8K: razonamiento de varios pasos.} Proxy p\'ublico m\'as cercano al paso que s\'i falla: combinar varios atributos num\'ericos. Phi-3.5-mini lidera con \textbf{86,2} usando solo 3,8B: la prueba directa de si ese cuello de botella se levanta.
 \end{itemize}
-Qwen2.5-1.5B es adem\'as la l\'inea base: el \'unico con un perfil \emph{medido} aqu\'i. La tarea no exige de forma evidente un modelo de 8B, lo que motiva evaluar candidatos bastante m\'as peque\~nos; el mayor es de \textbf{3,8B}.
+Qwen2.5-1.5B es adem\'as la l\'inea base: el \'unico con un perfil \emph{medido} aqu\'i. La tarea no exige de forma evidente un modelo de 8B, lo que motiva evaluar candidatos bastante m\'as peque\~nos.
 
 \end{multicols}
 
