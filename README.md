@@ -2,7 +2,7 @@
 
 Deliverable 1 · Generative Artificial Intelligence (580694), Primavera 2026 · Universidad de Concepción
 
-Equipo: Nombre 1 · Nombre 2 · Nombre 3 · Nombre 4
+Equipo: Rafael Fernández · Pedro Dañobeytia · Cristian Gonzalez · Daniel Gonzalez
 
 ## Resumen
 
