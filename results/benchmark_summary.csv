@@ -1,0 +1,9 @@
+﻿prompt_mode,difficulty,n,strict_valid_n,strict_valid_rate_pct,interpretable_n,interpretable_rate_pct,decision_correct_n,decision_accuracy_pct,executable_correct_n,executable_correct_rate_pct,avg_regret
+DIRECT,ALL,30,0,0.0,11,36.67,1,3.33,0,0.0,0.4073
+DIRECT,EASY,10,0,0.0,5,50.0,1,10.0,0,0.0,0.509
+DIRECT,MEDIUM,10,0,0.0,4,40.0,0,0.0,0,0.0,0.395
+DIRECT,HARD,10,0,0.0,2,20.0,0,0.0,0,0.0,0.1779
+STRUCTURED,ALL,30,29,96.67,29,96.67,5,16.67,5,16.67,0.4944
+STRUCTURED,EASY,10,10,100.0,10,100.0,2,20.0,2,20.0,0.5708
+STRUCTURED,MEDIUM,10,10,100.0,10,100.0,1,10.0,1,10.0,0.6009
+STRUCTURED,HARD,10,9,90.0,9,90.0,2,20.0,2,20.0,0.2911

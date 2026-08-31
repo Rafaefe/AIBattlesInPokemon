@@ -1,0 +1,1578 @@
+[
+  {
+    "case_id": 19,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 21,
+    "player_speed": 25,
+    "player_types": [
+      "Fire"
+    ],
+    "enemy_hp_percent": 19,
+    "enemy_speed": 49,
+    "enemy_types": [
+      "Electric"
+    ],
+    "moves": [
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 29
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 19
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 17
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 23
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      40.0,
+      67.5,
+      33.25,
+      95.0
+    ],
+    "best_vs_second_ratio": 1.407
+  },
+  {
+    "case_id": 17,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 97,
+    "player_speed": 51,
+    "player_types": [
+      "Normal"
+    ],
+    "enemy_hp_percent": 21,
+    "enemy_speed": 65,
+    "enemy_types": [
+      "Ground"
+    ],
+    "moves": [
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Strength",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 21
+      },
+      {
+        "name": "Drill Peck",
+        "type": "Flying",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 7
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 31
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      0.0,
+      120.0,
+      80.0,
+      20.0
+    ],
+    "best_vs_second_ratio": 1.5
+  },
+  {
+    "case_id": 3,
+    "difficulty": "EASY",
+    "player_hp_percent": 36,
+    "player_speed": 105,
+    "player_types": [
+      "Ice"
+    ],
+    "enemy_hp_percent": 47,
+    "enemy_speed": 83,
+    "enemy_types": [
+      "Water"
+    ],
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 32
+      },
+      {
+        "name": "Take Down",
+        "type": "Normal",
+        "power": 90,
+        "accuracy": 85,
+        "pp": 12
+      },
+      {
+        "name": "Low Kick",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 28
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 120,
+        "accuracy": 80,
+        "pp": 17
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      168.0,
+      76.5,
+      45.0,
+      48.0
+    ],
+    "best_vs_second_ratio": 2.196
+  },
+  {
+    "case_id": 16,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 41,
+    "player_speed": 89,
+    "player_types": [
+      "Flying"
+    ],
+    "enemy_hp_percent": 53,
+    "enemy_speed": 34,
+    "enemy_types": [
+      "Ground"
+    ],
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 24
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 29
+      },
+      {
+        "name": "Rock Throw",
+        "type": "Rock",
+        "power": 50,
+        "accuracy": 65,
+        "pp": 30
+      },
+      {
+        "name": "Ember",
+        "type": "Fire",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 15
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      65.0,
+      0.0,
+      16.25,
+      40.0
+    ],
+    "best_vs_second_ratio": 1.625
+  },
+  {
+    "case_id": 23,
+    "difficulty": "HARD",
+    "player_hp_percent": 62,
+    "player_speed": 28,
+    "player_types": [
+      "Normal",
+      "Ice"
+    ],
+    "enemy_hp_percent": 92,
+    "enemy_speed": 49,
+    "enemy_types": [
+      "Bug",
+      "Fighting"
+    ],
+    "moves": [
+      {
+        "name": "Rock Throw",
+        "type": "Rock",
+        "power": 50,
+        "accuracy": 65,
+        "pp": 15
+      },
+      {
+        "name": "Ember",
+        "type": "Fire",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 16
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 8
+      },
+      {
+        "name": "Slash",
+        "type": "Normal",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 13
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      32.5,
+      80.0,
+      95.0,
+      105.0
+    ],
+    "best_vs_second_ratio": 1.105
+  },
+  {
+    "case_id": 25,
+    "difficulty": "HARD",
+    "player_hp_percent": 75,
+    "player_speed": 23,
+    "player_types": [
+      "Rock"
+    ],
+    "enemy_hp_percent": 61,
+    "enemy_speed": 106,
+    "enemy_types": [
+      "Electric",
+      "Grass"
+    ],
+    "moves": [
+      {
+        "name": "Razor Leaf",
+        "type": "Grass",
+        "power": 55,
+        "accuracy": 95,
+        "pp": 27
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 33
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 8
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "accuracy": 100,
+        "pp": 12
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      26.125,
+      100.0,
+      40.0,
+      85.0
+    ],
+    "best_vs_second_ratio": 1.176
+  },
+  {
+    "case_id": 22,
+    "difficulty": "HARD",
+    "player_hp_percent": 78,
+    "player_speed": 37,
+    "player_types": [
+      "Flying",
+      "Grass"
+    ],
+    "enemy_hp_percent": 95,
+    "enemy_speed": 69,
+    "enemy_types": [
+      "Fighting",
+      "Flying"
+    ],
+    "moves": [
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 5
+      },
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 0
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 29
+      },
+      {
+        "name": "Strength",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 19
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      67.5,
+      0.0,
+      33.25,
+      80.0
+    ],
+    "best_vs_second_ratio": 1.185
+  },
+  {
+    "case_id": 10,
+    "difficulty": "EASY",
+    "player_hp_percent": 85,
+    "player_speed": 67,
+    "player_types": [
+      "Ghost"
+    ],
+    "enemy_hp_percent": 19,
+    "enemy_speed": 36,
+    "enemy_types": [
+      "Water"
+    ],
+    "moves": [
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 14
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 20
+      },
+      {
+        "name": "Ember",
+        "type": "Fire",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 11
+      },
+      {
+        "name": "Low Kick",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 7
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      47.5,
+      168.0,
+      20.0,
+      45.0
+    ],
+    "best_vs_second_ratio": 3.537
+  },
+  {
+    "case_id": 29,
+    "difficulty": "HARD",
+    "player_hp_percent": 93,
+    "player_speed": 50,
+    "player_types": [
+      "Bug",
+      "Rock"
+    ],
+    "enemy_hp_percent": 66,
+    "enemy_speed": 67,
+    "enemy_types": [
+      "Electric",
+      "Rock"
+    ],
+    "moves": [
+      {
+        "name": "Sludge",
+        "type": "Poison",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 24
+      },
+      {
+        "name": "Submission",
+        "type": "Fighting",
+        "power": 80,
+        "accuracy": 80,
+        "pp": 20
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 120,
+        "accuracy": 90,
+        "pp": 28
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 0
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      32.5,
+      128.0,
+      108.0,
+      0.0
+    ],
+    "best_vs_second_ratio": 1.185
+  },
+  {
+    "case_id": 20,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 98,
+    "player_speed": 96,
+    "player_types": [
+      "Bug"
+    ],
+    "enemy_hp_percent": 18,
+    "enemy_speed": 110,
+    "enemy_types": [
+      "Grass"
+    ],
+    "moves": [
+      {
+        "name": "Submission",
+        "type": "Fighting",
+        "power": 80,
+        "accuracy": 80,
+        "pp": 12
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 16
+      },
+      {
+        "name": "BubbleBeam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 9
+      },
+      {
+        "name": "Low Kick",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 6
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      64.0,
+      20.0,
+      32.5,
+      45.0
+    ],
+    "best_vs_second_ratio": 1.422
+  },
+  {
+    "case_id": 9,
+    "difficulty": "EASY",
+    "player_hp_percent": 28,
+    "player_speed": 119,
+    "player_types": [
+      "Fighting"
+    ],
+    "enemy_hp_percent": 51,
+    "enemy_speed": 30,
+    "enemy_types": [
+      "Poison"
+    ],
+    "moves": [
+      {
+        "name": "Leech Life",
+        "type": "Bug",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 21
+      },
+      {
+        "name": "Peck",
+        "type": "Flying",
+        "power": 35,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 19
+      },
+      {
+        "name": "Drill Peck",
+        "type": "Flying",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 26
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      40.0,
+      35.0,
+      20.0,
+      80.0
+    ],
+    "best_vs_second_ratio": 2.0
+  },
+  {
+    "case_id": 14,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 76,
+    "player_speed": 93,
+    "player_types": [
+      "Flying"
+    ],
+    "enemy_hp_percent": 39,
+    "enemy_speed": 114,
+    "enemy_types": [
+      "Bug"
+    ],
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 28
+      },
+      {
+        "name": "Low Kick",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 23
+      },
+      {
+        "name": "Ember",
+        "type": "Fire",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 33
+      },
+      {
+        "name": "Vine Whip",
+        "type": "Grass",
+        "power": 35,
+        "accuracy": 100,
+        "pp": 10
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      50.0,
+      22.5,
+      80.0,
+      17.5
+    ],
+    "best_vs_second_ratio": 1.6
+  },
+  {
+    "case_id": 24,
+    "difficulty": "HARD",
+    "player_hp_percent": 55,
+    "player_speed": 120,
+    "player_types": [
+      "Grass"
+    ],
+    "enemy_hp_percent": 87,
+    "enemy_speed": 98,
+    "enemy_types": [
+      "Grass",
+      "Poison"
+    ],
+    "moves": [
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 12
+      },
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 120,
+        "accuracy": 85,
+        "pp": 22
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 5
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 6
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      20.0,
+      204.0,
+      180.0,
+      67.5
+    ],
+    "best_vs_second_ratio": 1.133
+  },
+  {
+    "case_id": 12,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 90,
+    "player_speed": 68,
+    "player_types": [
+      "Bug"
+    ],
+    "enemy_hp_percent": 48,
+    "enemy_speed": 70,
+    "enemy_types": [
+      "Normal"
+    ],
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 28
+      },
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 8
+      },
+      {
+        "name": "ThunderShock",
+        "type": "Electric",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 18
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 29
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      90.0,
+      65.0,
+      40.0,
+      67.5
+    ],
+    "best_vs_second_ratio": 1.333
+  },
+  {
+    "case_id": 27,
+    "difficulty": "HARD",
+    "player_hp_percent": 28,
+    "player_speed": 43,
+    "player_types": [
+      "Fire",
+      "Bug"
+    ],
+    "enemy_hp_percent": 50,
+    "enemy_speed": 93,
+    "enemy_types": [
+      "Flying",
+      "Rock"
+    ],
+    "moves": [
+      {
+        "name": "Drill Peck",
+        "type": "Flying",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 35
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 35
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 32
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      40.0,
+      190.0,
+      135.0,
+      168.0
+    ],
+    "best_vs_second_ratio": 1.131
+  },
+  {
+    "case_id": 26,
+    "difficulty": "HARD",
+    "player_hp_percent": 29,
+    "player_speed": 57,
+    "player_types": [
+      "Rock",
+      "Electric"
+    ],
+    "enemy_hp_percent": 43,
+    "enemy_speed": 34,
+    "enemy_types": [
+      "Psychic",
+      "Ghost"
+    ],
+    "moves": [
+      {
+        "name": "Slash",
+        "type": "Normal",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 24
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 8
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 35
+      },
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 12
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      0.0,
+      101.25,
+      126.0,
+      40.0
+    ],
+    "best_vs_second_ratio": 1.244
+  },
+  {
+    "case_id": 2,
+    "difficulty": "EASY",
+    "player_hp_percent": 95,
+    "player_speed": 57,
+    "player_types": [
+      "Psychic"
+    ],
+    "enemy_hp_percent": 46,
+    "enemy_speed": 102,
+    "enemy_types": [
+      "Ground"
+    ],
+    "moves": [
+      {
+        "name": "Rock Throw",
+        "type": "Rock",
+        "power": 50,
+        "accuracy": 65,
+        "pp": 9
+      },
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 26
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "accuracy": 90,
+        "pp": 34
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      16.25,
+      80.0,
+      190.0,
+      33.75
+    ],
+    "best_vs_second_ratio": 2.375
+  },
+  {
+    "case_id": 13,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 64,
+    "player_speed": 99,
+    "player_types": [
+      "Electric"
+    ],
+    "enemy_hp_percent": 61,
+    "enemy_speed": 120,
+    "enemy_types": [
+      "Normal"
+    ],
+    "moves": [
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 18
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 9
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 120,
+        "accuracy": 80,
+        "pp": 33
+      },
+      {
+        "name": "Vine Whip",
+        "type": "Grass",
+        "power": 35,
+        "accuracy": 100,
+        "pp": 28
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      95.0,
+      126.0,
+      96.0,
+      35.0
+    ],
+    "best_vs_second_ratio": 1.312
+  },
+  {
+    "case_id": 21,
+    "difficulty": "HARD",
+    "player_hp_percent": 25,
+    "player_speed": 70,
+    "player_types": [
+      "Ground"
+    ],
+    "enemy_hp_percent": 32,
+    "enemy_speed": 52,
+    "enemy_types": [
+      "Flying",
+      "Fighting"
+    ],
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 0
+      },
+      {
+        "name": "Slash",
+        "type": "Normal",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 22
+      },
+      {
+        "name": "Strength",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 13
+      },
+      {
+        "name": "Submission",
+        "type": "Fighting",
+        "power": 80,
+        "accuracy": 80,
+        "pp": 24
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      0.0,
+      70.0,
+      80.0,
+      32.0
+    ],
+    "best_vs_second_ratio": 1.143
+  },
+  {
+    "case_id": 4,
+    "difficulty": "EASY",
+    "player_hp_percent": 34,
+    "player_speed": 44,
+    "player_types": [
+      "Flying"
+    ],
+    "enemy_hp_percent": 93,
+    "enemy_speed": 72,
+    "enemy_types": [
+      "Flying"
+    ],
+    "moves": [
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 6
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 17
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 5
+      },
+      {
+        "name": "Vine Whip",
+        "type": "Grass",
+        "power": 35,
+        "accuracy": 100,
+        "pp": 11
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      95.0,
+      33.25,
+      190.0,
+      17.5
+    ],
+    "best_vs_second_ratio": 2.0
+  },
+  {
+    "case_id": 8,
+    "difficulty": "EASY",
+    "player_hp_percent": 100,
+    "player_speed": 119,
+    "player_types": [
+      "Ground"
+    ],
+    "enemy_hp_percent": 36,
+    "enemy_speed": 107,
+    "enemy_types": [
+      "Water"
+    ],
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 18
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 120,
+        "accuracy": 80,
+        "pp": 30
+      },
+      {
+        "name": "Slash",
+        "type": "Normal",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 14
+      },
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 8
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      168.0,
+      48.0,
+      70.0,
+      20.0
+    ],
+    "best_vs_second_ratio": 2.4
+  },
+  {
+    "case_id": 1,
+    "difficulty": "EASY",
+    "player_hp_percent": 41,
+    "player_speed": 82,
+    "player_types": [
+      "Normal"
+    ],
+    "enemy_hp_percent": 93,
+    "enemy_speed": 91,
+    "enemy_types": [
+      "Grass"
+    ],
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 30
+      },
+      {
+        "name": "Strength",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 31
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 33
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 5
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      65.0,
+      120.0,
+      20.0,
+      60.0
+    ],
+    "best_vs_second_ratio": 1.846
+  },
+  {
+    "case_id": 15,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 83,
+    "player_speed": 81,
+    "player_types": [
+      "Water"
+    ],
+    "enemy_hp_percent": 67,
+    "enemy_speed": 66,
+    "enemy_types": [
+      "Grass"
+    ],
+    "moves": [
+      {
+        "name": "Sludge",
+        "type": "Poison",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 26
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 120,
+        "accuracy": 90,
+        "pp": 33
+      },
+      {
+        "name": "Submission",
+        "type": "Fighting",
+        "power": 80,
+        "accuracy": 80,
+        "pp": 30
+      },
+      {
+        "name": "Razor Leaf",
+        "type": "Grass",
+        "power": 55,
+        "accuracy": 95,
+        "pp": 13
+      }
+    ],
+    "reference_action": "MOVE_2",
+    "reference_scores": [
+      130.0,
+      216.0,
+      64.0,
+      26.125
+    ],
+    "best_vs_second_ratio": 1.662
+  },
+  {
+    "case_id": 18,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 65,
+    "player_speed": 91,
+    "player_types": [
+      "Electric"
+    ],
+    "enemy_hp_percent": 26,
+    "enemy_speed": 42,
+    "enemy_types": [
+      "Poison"
+    ],
+    "moves": [
+      {
+        "name": "Take Down",
+        "type": "Normal",
+        "power": 90,
+        "accuracy": 85,
+        "pp": 16
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 20
+      },
+      {
+        "name": "Confusion",
+        "type": "Psychic",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 24
+      },
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 8
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      76.5,
+      33.25,
+      100.0,
+      20.0
+    ],
+    "best_vs_second_ratio": 1.307
+  },
+  {
+    "case_id": 7,
+    "difficulty": "EASY",
+    "player_hp_percent": 48,
+    "player_speed": 67,
+    "player_types": [
+      "Grass"
+    ],
+    "enemy_hp_percent": 20,
+    "enemy_speed": 108,
+    "enemy_types": [
+      "Flying"
+    ],
+    "moves": [
+      {
+        "name": "Low Kick",
+        "type": "Fighting",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 20
+      },
+      {
+        "name": "Drill Peck",
+        "type": "Flying",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 31
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 120,
+        "accuracy": 90,
+        "pp": 11
+      },
+      {
+        "name": "Confusion",
+        "type": "Psychic",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 34
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      22.5,
+      80.0,
+      216.0,
+      50.0
+    ],
+    "best_vs_second_ratio": 2.7
+  },
+  {
+    "case_id": 11,
+    "difficulty": "MEDIUM",
+    "player_hp_percent": 97,
+    "player_speed": 52,
+    "player_types": [
+      "Poison"
+    ],
+    "enemy_hp_percent": 65,
+    "enemy_speed": 94,
+    "enemy_types": [
+      "Rock"
+    ],
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 21
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 26
+      },
+      {
+        "name": "Take Down",
+        "type": "Normal",
+        "power": 90,
+        "accuracy": 85,
+        "pp": 25
+      },
+      {
+        "name": "Mega Punch",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 85,
+        "pp": 27
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      80.0,
+      47.5,
+      38.25,
+      34.0
+    ],
+    "best_vs_second_ratio": 1.684
+  },
+  {
+    "case_id": 28,
+    "difficulty": "HARD",
+    "player_hp_percent": 27,
+    "player_speed": 113,
+    "player_types": [
+      "Poison",
+      "Ground"
+    ],
+    "enemy_hp_percent": 43,
+    "enemy_speed": 102,
+    "enemy_types": [
+      "Bug",
+      "Fighting"
+    ],
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 33
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 120,
+        "accuracy": 90,
+        "pp": 0
+      },
+      {
+        "name": "BubbleBeam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 8
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 7
+      }
+    ],
+    "reference_action": "MOVE_1",
+    "reference_scores": [
+      75.0,
+      0.0,
+      65.0,
+      40.0
+    ],
+    "best_vs_second_ratio": 1.154
+  },
+  {
+    "case_id": 30,
+    "difficulty": "HARD",
+    "player_hp_percent": 98,
+    "player_speed": 21,
+    "player_types": [
+      "Fighting"
+    ],
+    "enemy_hp_percent": 16,
+    "enemy_speed": 103,
+    "enemy_types": [
+      "Grass",
+      "Water"
+    ],
+    "moves": [
+      {
+        "name": "Lick",
+        "type": "Ghost",
+        "power": 20,
+        "accuracy": 100,
+        "pp": 23
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 19
+      },
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 120,
+        "accuracy": 85,
+        "pp": 10
+      },
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 30
+      }
+    ],
+    "reference_action": "MOVE_3",
+    "reference_scores": [
+      20.0,
+      33.25,
+      102.0,
+      84.0
+    ],
+    "best_vs_second_ratio": 1.214
+  },
+  {
+    "case_id": 5,
+    "difficulty": "EASY",
+    "player_hp_percent": 30,
+    "player_speed": 63,
+    "player_types": [
+      "Fire"
+    ],
+    "enemy_hp_percent": 23,
+    "enemy_speed": 117,
+    "enemy_types": [
+      "Psychic"
+    ],
+    "moves": [
+      {
+        "name": "Water Gun",
+        "type": "Water",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 14
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 35,
+        "accuracy": 95,
+        "pp": 19
+      },
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 33
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 17
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      40.0,
+      33.25,
+      32.5,
+      95.0
+    ],
+    "best_vs_second_ratio": 2.375
+  },
+  {
+    "case_id": 6,
+    "difficulty": "EASY",
+    "player_hp_percent": 49,
+    "player_speed": 83,
+    "player_types": [
+      "Ghost"
+    ],
+    "enemy_hp_percent": 46,
+    "enemy_speed": 109,
+    "enemy_types": [
+      "Rock"
+    ],
+    "moves": [
+      {
+        "name": "Sludge",
+        "type": "Poison",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 22
+      },
+      {
+        "name": "Slash",
+        "type": "Normal",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 15
+      },
+      {
+        "name": "Rock Throw",
+        "type": "Rock",
+        "power": 50,
+        "accuracy": 65,
+        "pp": 15
+      },
+      {
+        "name": "BubbleBeam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 14
+      }
+    ],
+    "reference_action": "MOVE_4",
+    "reference_scores": [
+      32.5,
+      35.0,
+      32.5,
+      130.0
+    ],
+    "best_vs_second_ratio": 3.714
+  }
+]
