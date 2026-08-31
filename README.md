@@ -40,10 +40,14 @@ python src/pokemon_benchmark_final.py
 ```
 
 El script es determinista (decodificación greedy, semilla fija) y **no**
-requiere PyBoy ni el ROM: los 30 estados de batalla se generan de forma
-sintética y reproducible. La demo con el emulador se mantiene en un módulo
-aparte para no mezclar errores del emulador con fallos del modelo (ver
-Sección 7 del paper).
+requiere PyBoy ni el ROM de Pokémon Blue: los movimientos, la tabla de
+tipos de Gen I y los 30 estados de batalla están codificados directamente
+en `src/pokemon_benchmark_final.py` (diccionarios `MOVE_DB` y
+`TYPE_CHART`) y los estados se generan de forma sintética con una semilla
+fija (`random`, `SEED = 20260830`) — no se lee memoria RAM ni se abre el
+emulador en ningún punto de este script. La demo con PyBoy (navegación
+completa del juego) vive en un módulo aparte, precisamente para no mezclar
+errores del emulador con fallos del modelo (ver Sección 7 del paper).
 
 ## Métricas reportadas
 
@@ -73,9 +77,10 @@ archivos de resultados. Para que el enlace sea estable, recomendamos:
 Código, datos generados y paper bajo licencia MIT (ver [`LICENSE`](LICENSE)).
 
 Esta licencia **no cubre** el contenido de Pokémon Blue: los nombres de
-movimientos, tipos y valores de juego usados para construir los estados de
-batalla son propiedad de Nintendo / Creatures Inc. / GAME FREAK inc. y se
-usan solo con fines educativos. El ROM no se incluye ni se distribuye en
-este repositorio. Los modelos evaluados (Qwen2.5, Llama 3.2, Phi-3.5-mini)
-se referencian por nombre bajo sus propias licencias; sus pesos no se
-redistribuyen aquí.
+movimientos, tipos y la tabla de efectividad de Gen I (codificados a mano
+en `src/pokemon_benchmark_final.py`, sin leer el ROM ni ningún archivo
+extraído de él) son propiedad de Nintendo / Creatures Inc. / GAME FREAK
+inc. y se referencian solo con fines educativos. Este repositorio no
+incluye, lee ni distribuye el ROM en ningún punto. Los modelos evaluados
+(Qwen2.5, Llama 3.2, Phi-3.5-mini) se referencian por nombre bajo sus
+propias licencias; sus pesos no se redistribuyen aquí.

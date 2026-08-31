@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Pedro Dañobeytia, Rafael Fernández, Cristian Gonzalez, Daniel Gonzalez
+Copyright (c) 2026 [Nombre 1, Nombre 2, Nombre 3, Nombre 4]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,12 @@ SOFTWARE.
 
 Nota sobre contenido de terceros: este repositorio contiene código y datos
 generados por el equipo (benchmark, resultados, paper). Los nombres de
-movimientos, tipos y valores de juego usados para construir los estados
-sintéticos de batalla provienen de Pokémon Blue (Nintendo / Creatures Inc. /
-GAME FREAK inc.) y se usan únicamente con fines educativos y de
-investigación; esta licencia MIT no se extiende a esa propiedad intelectual.
-Los modelos de lenguaje evaluados (Qwen2.5, Llama 3.2, Phi-3.5-mini) se
-referencian por nombre y se descargan desde sus repositorios oficiales bajo
-sus propias licencias; este repositorio no redistribuye sus pesos.
+movimientos, tipos y la tabla de efectividad de Gen I están codificados a
+mano en el script (no extraídos del ROM ni de ningún archivo derivado de
+él) y provienen de Pokémon Blue (Nintendo / Creatures Inc. / GAME FREAK
+inc.); se usan únicamente con fines educativos y de investigación, y esta
+licencia MIT no se extiende a esa propiedad intelectual. El ROM no se
+incluye ni se lee en ningún punto de este repositorio. Los modelos de
+lenguaje evaluados (Qwen2.5, Llama 3.2, Phi-3.5-mini) se referencian por
+nombre y se descargan desde sus repositorios oficiales bajo sus propias
+licencias; este repositorio no redistribuye sus pesos.
