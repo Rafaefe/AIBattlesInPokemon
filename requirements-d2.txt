@@ -1,0 +1,7 @@
+# Deliverable 2. torch NO se fija: se usa el que ya trae Colab (o el que tengas instalado).
+transformers>=4.46
+accelerate>=0.34
+pandas>=2.0
+scipy>=1.10
+tqdm
+pytest

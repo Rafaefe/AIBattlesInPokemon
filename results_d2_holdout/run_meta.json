@@ -1,0 +1,47 @@
+{
+  "n_states": 50,
+  "seed": 20260927,
+  "difficulty_split": {
+    "EASY": 17,
+    "MEDIUM": 17,
+    "HARD": 16
+  },
+  "strategies": [
+    "direct",
+    "decomposed_words"
+  ],
+  "sessions": [
+    {
+      "strategies": [
+        "direct",
+        "decomposed_words"
+      ],
+      "wall_clock_seconds": 21.4,
+      "finished_at": "2026-09-27 19:52:11",
+      "llm_calls": {
+        "generate": 207,
+        "choose": 0,
+        "cache_hits": 365
+      },
+      "hardware": {
+        "device": "cuda",
+        "gpu": "Tesla T4",
+        "dtype": "torch.float32",
+        "torch": "2.11.0+cu128"
+      }
+    }
+  ],
+  "oracle_check": "calculator + true type chart reproduces the reference action on all states",
+  "model": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "n_params": 1543714304,
+    "device": "cuda",
+    "gpu": "Tesla T4",
+    "dtype": "torch.float32",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1",
+    "system_prompt": "You are an AI playing Pokemon Blue.",
+    "decoding": "greedy (do_sample=False), default generation config otherwise"
+  }
+}

@@ -1,0 +1,3700 @@
+{
+  "meta": {
+    "n_states": 50,
+    "seed": 20260830,
+    "difficulty_split": {
+      "EASY": 17,
+      "MEDIUM": 17,
+      "HARD": 16
+    },
+    "strategies": [
+      "direct",
+      "structured",
+      "permutation",
+      "cot",
+      "decomposed",
+      "decomposed_cal",
+      "decomposed_words"
+    ],
+    "oracle_check": "calculator + true type chart reproduces the reference action on all states",
+    "model": {
+      "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "n_params": 1543714304,
+      "device": "cuda",
+      "gpu": "Tesla T4",
+      "dtype": "torch.float32",
+      "torch": "2.11.0+cu128",
+      "transformers": "5.16.1",
+      "system_prompt": "You are an AI playing Pokemon Blue.",
+      "decoding": "greedy (do_sample=False), default generation config otherwise",
+      "calls": {
+        "generate": 301,
+        "choose": 124,
+        "cache_hits": 542
+      }
+    },
+    "sessions": [
+      {
+        "strategies": [
+          "direct",
+          "structured",
+          "permutation",
+          "cot",
+          "decomposed",
+          "decomposed_cal"
+        ],
+        "finished_at": "2026-09-27 02:13:09",
+        "hardware": {
+          "device": "cpu",
+          "gpu": null,
+          "dtype": "torch.float32",
+          "torch": "2.13.0+cpu"
+        },
+        "llm_calls": {
+          "generate": 301,
+          "choose": 124,
+          "cache_hits": 542
+        },
+        "wall_clock_seconds": 6795.8
+      },
+      {
+        "strategies": [
+          "decomposed_words"
+        ],
+        "wall_clock_seconds": 16.8,
+        "finished_at": "2026-09-27 19:51:49",
+        "llm_calls": {
+          "generate": 122,
+          "choose": 0,
+          "cache_hits": 144
+        },
+        "hardware": {
+          "device": "cuda",
+          "gpu": "Tesla T4",
+          "dtype": "torch.float32",
+          "torch": "2.11.0+cu128"
+        }
+      }
+    ],
+    "hardware_note": "sessions[0].hardware se copio del run_meta.json que produjo esa sesion; 'model' describe la ultima sesion"
+  },
+  "solution": "decomposed_words",
+  "strategies": {
+    "direct": {
+      "label": "B0 Directo (baseline)",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 14,
+      "acc_pct": 28.0,
+      "acc_ci95": [
+        17.5,
+        41.7
+      ],
+      "exec_k": 14,
+      "exec_pct": 28.0,
+      "exec_ci95": [
+        17.5,
+        41.7
+      ],
+      "mean_regret": 0.333,
+      "llm_calls_per_state": 1.0,
+      "seconds_per_state": 5.29,
+      "per_difficulty": {
+        "EASY": "6/17",
+        "MEDIUM": "6/17",
+        "HARD": "2/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 14,
+        "MOVE_2": 23,
+        "MOVE_3": 9,
+        "MOVE_4": 4
+      },
+      "chi2_uniform": 15.8,
+      "chi2_p": 0.001269964300186854
+    },
+    "structured": {
+      "label": "A1 Estructurado (D1)",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 10,
+      "acc_pct": 20.0,
+      "acc_ci95": [
+        11.2,
+        33.0
+      ],
+      "exec_k": 10,
+      "exec_pct": 20.0,
+      "exec_ci95": [
+        11.2,
+        33.0
+      ],
+      "mean_regret": 0.42,
+      "llm_calls_per_state": 1.0,
+      "seconds_per_state": 5.81,
+      "per_difficulty": {
+        "EASY": "3/17",
+        "MEDIUM": "4/17",
+        "HARD": "3/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 1,
+        "MOVE_2": 37,
+        "MOVE_3": 4,
+        "MOVE_4": 8
+      },
+      "chi2_uniform": 66.0,
+      "chi2_p": 3.065003175803402e-14
+    },
+    "permutation": {
+      "label": "A2 Votacion x4 permutaciones",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 15,
+      "acc_pct": 30.0,
+      "acc_ci95": [
+        19.1,
+        43.8
+      ],
+      "exec_k": 15,
+      "exec_pct": 30.0,
+      "exec_ci95": [
+        19.1,
+        43.8
+      ],
+      "mean_regret": 0.323,
+      "llm_calls_per_state": 4.0,
+      "seconds_per_state": 15.12,
+      "per_difficulty": {
+        "EASY": "6/17",
+        "MEDIUM": "6/17",
+        "HARD": "3/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 14,
+        "MOVE_2": 20,
+        "MOVE_3": 7,
+        "MOVE_4": 9
+      },
+      "chi2_uniform": 8.1,
+      "chi2_p": 0.044386959367383204
+    },
+    "cot": {
+      "label": "A3 Chain-of-thought + formula",
+      "n": 50,
+      "strict_pct": 56.0,
+      "interp_pct": 96.0,
+      "acc_k": 14,
+      "acc_pct": 28.0,
+      "acc_ci95": [
+        17.5,
+        41.7
+      ],
+      "exec_k": 7,
+      "exec_pct": 14.0,
+      "exec_ci95": [
+        7.0,
+        26.2
+      ],
+      "mean_regret": 0.364,
+      "llm_calls_per_state": 1.0,
+      "seconds_per_state": 96.91,
+      "per_difficulty": {
+        "EASY": "4/17",
+        "MEDIUM": "5/17",
+        "HARD": "5/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 11,
+        "MOVE_2": 17,
+        "MOVE_3": 7,
+        "MOVE_4": 13
+      },
+      "chi2_uniform": 4.3,
+      "chi2_p": 0.22764711306130173
+    },
+    "decomposed": {
+      "label": "S1 Descomposicion numerica (v1)",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 29,
+      "acc_pct": 58.0,
+      "acc_ci95": [
+        44.2,
+        70.6
+      ],
+      "exec_k": 29,
+      "exec_pct": 58.0,
+      "exec_ci95": [
+        44.2,
+        70.6
+      ],
+      "mean_regret": 0.192,
+      "llm_calls_per_state": 5.16,
+      "seconds_per_state": 12.56,
+      "per_difficulty": {
+        "EASY": "9/17",
+        "MEDIUM": "7/17",
+        "HARD": "13/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 16,
+        "MOVE_2": 12,
+        "MOVE_3": 9,
+        "MOVE_4": 13
+      },
+      "chi2_uniform": 2.0,
+      "chi2_p": 0.5724067044708798
+    },
+    "decomposed_cal": {
+      "label": "S1+cal numerica calibrada (v1)",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 21,
+      "acc_pct": 42.0,
+      "acc_ci95": [
+        29.4,
+        55.8
+      ],
+      "exec_k": 21,
+      "exec_pct": 42.0,
+      "exec_ci95": [
+        29.4,
+        55.8
+      ],
+      "mean_regret": 0.305,
+      "llm_calls_per_state": 5.16,
+      "seconds_per_state": 0.0,
+      "per_difficulty": {
+        "EASY": "5/17",
+        "MEDIUM": "6/17",
+        "HARD": "10/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 14,
+        "MOVE_2": 13,
+        "MOVE_3": 11,
+        "MOVE_4": 12
+      },
+      "chi2_uniform": 0.4,
+      "chi2_p": 0.9402424948393607
+    },
+    "notype": {
+      "label": "H  Heuristica sin tipos (sin modelo)",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 27,
+      "acc_pct": 54.0,
+      "acc_ci95": [
+        40.4,
+        67.0
+      ],
+      "exec_k": 27,
+      "exec_pct": 54.0,
+      "exec_ci95": [
+        40.4,
+        67.0
+      ],
+      "mean_regret": 0.222,
+      "llm_calls_per_state": 0.0,
+      "seconds_per_state": 0.0,
+      "per_difficulty": {
+        "EASY": "7/17",
+        "MEDIUM": "7/17",
+        "HARD": "13/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 18,
+        "MOVE_2": 12,
+        "MOVE_3": 7,
+        "MOVE_4": 13
+      },
+      "chi2_uniform": 4.9,
+      "chi2_p": 0.18079799409696135
+    },
+    "decomposed_words": {
+      "label": "S2 Descomposicion en palabras",
+      "n": 50,
+      "strict_pct": 100.0,
+      "interp_pct": 100.0,
+      "acc_k": 24,
+      "acc_pct": 48.0,
+      "acc_ci95": [
+        34.8,
+        61.5
+      ],
+      "exec_k": 24,
+      "exec_pct": 48.0,
+      "exec_ci95": [
+        34.8,
+        61.5
+      ],
+      "mean_regret": 0.254,
+      "llm_calls_per_state": 5.16,
+      "seconds_per_state": 0.34,
+      "per_difficulty": {
+        "EASY": "8/17",
+        "MEDIUM": "7/17",
+        "HARD": "9/16"
+      },
+      "chosen_positions": {
+        "MOVE_1": 13,
+        "MOVE_2": 15,
+        "MOVE_3": 10,
+        "MOVE_4": 12
+      },
+      "chi2_uniform": 1.0,
+      "chi2_p": 0.7915743930759284
+    }
+  },
+  "paired_tests_vs_baseline": [
+    {
+      "a": "structured",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 3,
+      "b_right_a_wrong": 7,
+      "p_value": 0.34375
+    },
+    {
+      "a": "permutation",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 2,
+      "b_right_a_wrong": 1,
+      "p_value": 1.0
+    },
+    {
+      "a": "cot",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 3,
+      "b_right_a_wrong": 10,
+      "p_value": 0.09228515625
+    },
+    {
+      "a": "decomposed",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 17,
+      "b_right_a_wrong": 2,
+      "p_value": 0.000728607177734375
+    },
+    {
+      "a": "decomposed_cal",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 11,
+      "b_right_a_wrong": 4,
+      "p_value": 0.11846923828125
+    },
+    {
+      "a": "notype",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 16,
+      "b_right_a_wrong": 3,
+      "p_value": 0.004425048828125
+    },
+    {
+      "a": "decomposed_words",
+      "b": "direct",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 13,
+      "b_right_a_wrong": 3,
+      "p_value": 0.021270751953125
+    }
+  ],
+  "paired_tests_solution_vs_alternatives": [
+    {
+      "a": "decomposed_words",
+      "b": "structured",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 16,
+      "b_right_a_wrong": 2,
+      "p_value": 0.001312255859375
+    },
+    {
+      "a": "decomposed_words",
+      "b": "permutation",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 12,
+      "b_right_a_wrong": 3,
+      "p_value": 0.03515625
+    },
+    {
+      "a": "decomposed_words",
+      "b": "cot",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 18,
+      "b_right_a_wrong": 1,
+      "p_value": 7.62939453125e-05
+    },
+    {
+      "a": "decomposed_words",
+      "b": "decomposed",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 2,
+      "b_right_a_wrong": 7,
+      "p_value": 0.1796875
+    },
+    {
+      "a": "decomposed_words",
+      "b": "decomposed_cal",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 7,
+      "b_right_a_wrong": 4,
+      "p_value": 0.548828125
+    },
+    {
+      "a": "decomposed_words",
+      "b": "notype",
+      "metric": "executable_correct",
+      "n": 50,
+      "a_right_b_wrong": 2,
+      "b_right_a_wrong": 5,
+      "p_value": 0.453125
+    }
+  ],
+  "permutation_diagnostics": {
+    "states": 50,
+    "states_with_4_valid_answers": 49,
+    "same_displayed_slot_all_4": 0,
+    "same_original_move_all_4": 8,
+    "displayed_slot_distribution": {
+      "MOVE_1": 39,
+      "MOVE_2": 76,
+      "MOVE_3": 71,
+      "MOVE_4": 13
+    },
+    "chi2_uniform": 52.4,
+    "chi2_p": 2.4648802454456583e-11
+  },
+  "facts": {
+    "decomposed": {
+      "decisions_by_tie_break": 3,
+      "decisions_by_tie_break_correct": 2,
+      "queries": 258,
+      "unique_pairs": 122,
+      "unique_correct": 21,
+      "unique_accuracy_pct": 17.2,
+      "by_true_multiplier": {
+        "2.0": "0/18",
+        "1.0": "0/80",
+        "0.5": "21/21",
+        "0.0": "0/3"
+      },
+      "predicted_distribution": {
+        "0.5": 122
+      },
+      "modal_answer": 0.5,
+      "modal_share": "122/122",
+      "mean_prob_of_modal_answer": 0.972,
+      "unparsed_answers": 0,
+      "non_neutral_answers": 122,
+      "non_neutral_correct": 21,
+      "constant_x1_correct": 80,
+      "same_type_pairs": 9,
+      "same_type_said_super_wrongly": [],
+      "wrong_facts": [
+        {
+          "attack": "Bug",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9784,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Bug",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9749,
+          "matches_modern_chart": true
+        },
+        {
+          "attack": "Bug",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.978,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Bug",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9804,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9845,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9845,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.985,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9781,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.9822,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9851,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9806,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9811,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9766,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9828,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9827,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9063,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.9789,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9843,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9816,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Bug",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9857,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.984,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9782,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9855,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9788,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9817,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9021,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9776,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9829,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9764,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.979,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9693,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9764,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9806,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9769,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9803,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9833,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9829,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9715,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9773,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9828,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9769,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9629,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9817,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9811,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.8976,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9804,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9709,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9798,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9819,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.983,
+          "matches_modern_chart": true
+        },
+        {
+          "attack": "Ice",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9827,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9698,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9801,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9738,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9728,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9772,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.954,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9828,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9818,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9809,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.982,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.9733,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9796,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9749,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9803,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.7476,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9766,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9631,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9788,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9844,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9842,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9834,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9836,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9712,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9833,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.983,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9798,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9795,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9759,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9778,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9744,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9807,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9688,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9762,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9764,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9789,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9819,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9813,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.8505,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9785,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Bug",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9837,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9827,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9809,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9809,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.982,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9702,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9757,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9728,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9767,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.9631,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.9796,
+          "matches_modern_chart": false
+        }
+      ]
+    },
+    "decomposed_cal": {
+      "decisions_by_tie_break": 3,
+      "decisions_by_tie_break_correct": 1,
+      "queries": 258,
+      "unique_pairs": 122,
+      "unique_correct": 22,
+      "unique_accuracy_pct": 18.0,
+      "by_true_multiplier": {
+        "2.0": "0/18",
+        "1.0": "5/80",
+        "0.5": "17/21",
+        "0.0": "0/3"
+      },
+      "predicted_distribution": {
+        "2.0": 1,
+        "1.0": 8,
+        "0.5": 113
+      },
+      "modal_answer": 0.5,
+      "modal_share": "113/122",
+      "mean_prob_of_modal_answer": 0.484,
+      "unparsed_answers": 0,
+      "non_neutral_answers": 114,
+      "non_neutral_correct": 17,
+      "constant_x1_correct": 80,
+      "same_type_pairs": 9,
+      "same_type_said_super_wrongly": [
+        "Electric"
+      ],
+      "wrong_facts": [
+        {
+          "attack": "Bug",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4631,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Bug",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.352,
+          "matches_modern_chart": true
+        },
+        {
+          "attack": "Bug",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.454,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Bug",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4773,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Electric",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": null,
+          "confidence": 0.4697,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5876,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5337,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5244,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5733,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.5763,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5824,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5174,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4925,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5267,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5883,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.4379,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.5079,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5362,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4272,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Bug",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5474,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5466,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5774,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.575,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4547,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5818,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4926,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5699,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4999,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4515,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4973,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5721,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.463,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4033,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ghost",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4794,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5845,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5149,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5222,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5186,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5772,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4786,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4902,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.4937,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5022,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5807,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4756,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ground",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4495,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5524,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.546,
+          "matches_modern_chart": true
+        },
+        {
+          "attack": "Ice",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5229,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5105,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.581,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5666,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5155,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4914,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4733,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.6336,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5766,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.6186,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5575,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 0.0,
+          "answer": null,
+          "confidence": 0.5596,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.6165,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5435,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.6245,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5224,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5339,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5264,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.6414,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4975,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5759,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5897,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": null,
+          "confidence": 0.4668,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5166,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5132,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5666,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5447,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4361,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.417,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Grass",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5627,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5318,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5192,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5362,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.4753,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Psychic",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": null,
+          "confidence": 0.5197,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5542,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.487,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5678,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Ice",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5036,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Water",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4462,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Bug",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5439,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Electric",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5802,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Fighting",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5471,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Fire",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.4624,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Flying",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4906,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Ghost",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5166,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Ground",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.5334,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Normal",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.5084,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Poison",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4539,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": null,
+          "confidence": 0.4953,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Rock",
+          "model": 0.5,
+          "truth": 2.0,
+          "answer": null,
+          "confidence": 0.4929,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Water",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": null,
+          "confidence": 0.4591,
+          "matches_modern_chart": false
+        }
+      ]
+    },
+    "decomposed_words": {
+      "decisions_by_tie_break": 3,
+      "decisions_by_tie_break_correct": 0,
+      "queries": 258,
+      "unique_pairs": 122,
+      "unique_correct": 74,
+      "unique_accuracy_pct": 60.7,
+      "by_true_multiplier": {
+        "2.0": "2/18",
+        "1.0": "72/80",
+        "0.5": "0/21",
+        "0.0": "0/3"
+      },
+      "predicted_distribution": {
+        "2.0": 13,
+        "1.0": 106,
+        "0.5": 3
+      },
+      "modal_answer": 1.0,
+      "modal_share": "106/122",
+      "mean_prob_of_modal_answer": null,
+      "unparsed_answers": 0,
+      "non_neutral_answers": 16,
+      "non_neutral_correct": 2,
+      "constant_x1_correct": 80,
+      "same_type_pairs": 9,
+      "same_type_said_super_wrongly": [
+        "Electric",
+        "Poison",
+        "Psychic",
+        "Rock",
+        "Water"
+      ],
+      "wrong_facts": [
+        {
+          "attack": "Bug",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Electric",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Fire",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Ice",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Electric",
+          "defend": "Normal",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Ice",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fighting",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Bug",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Ice",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Fire",
+          "defend": "Water",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Electric",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Flying",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Fire",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Grass",
+          "defend": "Water",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Fire",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Ice",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Normal",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Poison",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Poison",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Psychic",
+          "defend": "Psychic",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Ice",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Rock",
+          "defend": "Rock",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "confidence": null,
+          "matches_modern_chart": false
+        },
+        {
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "confidence": null,
+          "matches_modern_chart": false
+        }
+      ]
+    }
+  },
+  "agreement_with_notype": {
+    "decomposed": 48,
+    "decomposed_cal": 40,
+    "decomposed_words": 42
+  },
+  "content_free_prior": {
+    "2": 0.0011,
+    "1": 0.01365,
+    "0.5": 0.9039,
+    "0": 0.0813
+  },
+  "failures": [
+    {
+      "case_id": 32,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 1.0,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Thunderbolt",
+          "attack": "Electric",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Razor Leaf",
+          "attack": "Grass",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 46,
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.2895,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Flamethrower",
+          "attack": "Fire",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Rock Slide",
+          "attack": "Rock",
+          "defend": "Ground",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Rock Slide",
+          "attack": "Rock",
+          "defend": "Rock",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Strength",
+          "attack": "Normal",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 33,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.2154,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Psybeam",
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 15,
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_3",
+      "regret": 0.7404,
+      "wrong_facts": [
+        {
+          "move": "MOVE_2",
+          "name": "Rock Slide",
+          "attack": "Rock",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Psybeam",
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 24,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.35,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Confusion",
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 3,
+      "difficulty": "EASY",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.7143,
+      "wrong_facts": [
+        {
+          "move": "MOVE_4",
+          "name": "Hydro Pump",
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 27,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 0.2344,
+      "wrong_facts": [
+        {
+          "move": "MOVE_3",
+          "name": "Razor Leaf",
+          "attack": "Grass",
+          "defend": "Water",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 31,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.4667,
+      "wrong_facts": [
+        {
+          "move": "MOVE_3",
+          "name": "Blizzard",
+          "attack": "Ice",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 8,
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.7143,
+      "wrong_facts": [
+        {
+          "move": "MOVE_2",
+          "name": "Hydro Pump",
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Water Gun",
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 29,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.35,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Confusion",
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 4,
+      "difficulty": "EASY",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 0.5,
+      "wrong_facts": [
+        {
+          "move": "MOVE_3",
+          "name": "Thunderbolt",
+          "attack": "Electric",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Vine Whip",
+          "attack": "Grass",
+          "defend": "Flying",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 5,
+      "difficulty": "EASY",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_4",
+      "regret": 0.6579,
+      "wrong_facts": [
+        {
+          "move": "MOVE_3",
+          "name": "Psybeam",
+          "attack": "Psychic",
+          "defend": "Psychic",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 37,
+      "difficulty": "HARD",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.1204,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Blizzard",
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Scratch",
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 47,
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_3",
+      "regret": 0.0714,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Quick Attack",
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Sludge",
+          "attack": "Poison",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Submission",
+          "attack": "Fighting",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 38,
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.4062,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "ThunderShock",
+          "attack": "Electric",
+          "defend": "Normal",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Surf",
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Vine Whip",
+          "attack": "Grass",
+          "defend": "Water",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 34,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.3077,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Sludge",
+          "attack": "Poison",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "ThunderShock",
+          "attack": "Electric",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Water Gun",
+          "attack": "Water",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 17,
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.4947,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Flamethrower",
+          "attack": "Fire",
+          "defend": "Bug",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Ember",
+          "attack": "Fire",
+          "defend": "Bug",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 12,
+      "difficulty": "EASY",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_2",
+      "regret": 0.75,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Thunderbolt",
+          "attack": "Electric",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Ice Beam",
+          "attack": "Ice",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 35,
+      "difficulty": "HARD",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 0.05,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Thunderbolt",
+          "attack": "Electric",
+          "defend": "Grass",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Slash",
+          "attack": "Normal",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 20,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 0.3538,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Thunder",
+          "attack": "Electric",
+          "defend": "Fire",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 44,
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_4",
+      "regret": 0.7059,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Psychic",
+          "attack": "Psychic",
+          "defend": "Fighting",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "ThunderShock",
+          "attack": "Electric",
+          "defend": "Ice",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Fire Blast",
+          "attack": "Fire",
+          "defend": "Ice",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 43,
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_4",
+      "regret": 0.537,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Razor Leaf",
+          "attack": "Grass",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_1",
+          "name": "Razor Leaf",
+          "attack": "Grass",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Ice Beam",
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Confusion",
+          "attack": "Psychic",
+          "defend": "Psychic",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Confusion",
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Blizzard",
+          "attack": "Ice",
+          "defend": "Psychic",
+          "model": 0.5,
+          "truth": 1.0,
+          "answer": "not very effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 18,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.2,
+      "wrong_facts": [
+        {
+          "move": "MOVE_2",
+          "name": "Ice Beam",
+          "attack": "Ice",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Hydro Pump",
+          "attack": "Water",
+          "defend": "Water",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 6,
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_4",
+      "regret": 0.7308,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Sludge",
+          "attack": "Poison",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Slash",
+          "attack": "Normal",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Rock Throw",
+          "attack": "Rock",
+          "defend": "Rock",
+          "model": 2.0,
+          "truth": 1.0,
+          "answer": "super effective",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "BubbleBeam",
+          "attack": "Water",
+          "defend": "Rock",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 21,
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_2",
+      "regret": 0.75,
+      "wrong_facts": [
+        {
+          "move": "MOVE_2",
+          "name": "Psybeam",
+          "attack": "Psychic",
+          "defend": "Poison",
+          "model": 1.0,
+          "truth": 2.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_3",
+          "name": "Sludge",
+          "attack": "Poison",
+          "defend": "Poison",
+          "model": 2.0,
+          "truth": 0.5,
+          "answer": "super effective",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    },
+    {
+      "case_id": 11,
+      "difficulty": "EASY",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 1.0,
+      "wrong_facts": [
+        {
+          "move": "MOVE_1",
+          "name": "Strength",
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_2",
+          "name": "Take Down",
+          "attack": "Normal",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.0,
+          "answer": "normal damage",
+          "modern": null
+        },
+        {
+          "move": "MOVE_4",
+          "name": "Sludge",
+          "attack": "Poison",
+          "defend": "Ghost",
+          "model": 1.0,
+          "truth": 0.5,
+          "answer": "normal damage",
+          "modern": null
+        }
+      ],
+      "fixed_by_correct_facts": true,
+      "cause": "hecho de tipo incorrecto"
+    }
+  ]
+}

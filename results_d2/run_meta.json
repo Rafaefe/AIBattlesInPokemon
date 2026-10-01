@@ -1,0 +1,80 @@
+{
+  "n_states": 50,
+  "seed": 20260830,
+  "difficulty_split": {
+    "EASY": 17,
+    "MEDIUM": 17,
+    "HARD": 16
+  },
+  "strategies": [
+    "direct",
+    "structured",
+    "permutation",
+    "cot",
+    "decomposed",
+    "decomposed_cal",
+    "decomposed_words"
+  ],
+  "oracle_check": "calculator + true type chart reproduces the reference action on all states",
+  "model": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "n_params": 1543714304,
+    "device": "cuda",
+    "gpu": "Tesla T4",
+    "dtype": "torch.float32",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.16.1",
+    "system_prompt": "You are an AI playing Pokemon Blue.",
+    "decoding": "greedy (do_sample=False), default generation config otherwise",
+    "calls": {
+      "generate": 301,
+      "choose": 124,
+      "cache_hits": 542
+    }
+  },
+  "sessions": [
+    {
+      "strategies": [
+        "direct",
+        "structured",
+        "permutation",
+        "cot",
+        "decomposed",
+        "decomposed_cal"
+      ],
+      "finished_at": "2026-09-27 02:13:09",
+      "hardware": {
+        "device": "cpu",
+        "gpu": null,
+        "dtype": "torch.float32",
+        "torch": "2.13.0+cpu"
+      },
+      "llm_calls": {
+        "generate": 301,
+        "choose": 124,
+        "cache_hits": 542
+      },
+      "wall_clock_seconds": 6795.8
+    },
+    {
+      "strategies": [
+        "decomposed_words"
+      ],
+      "wall_clock_seconds": 16.8,
+      "finished_at": "2026-09-27 19:51:49",
+      "llm_calls": {
+        "generate": 122,
+        "choose": 0,
+        "cache_hits": 144
+      },
+      "hardware": {
+        "device": "cuda",
+        "gpu": "Tesla T4",
+        "dtype": "torch.float32",
+        "torch": "2.11.0+cu128"
+      }
+    }
+  ],
+  "hardware_note": "sessions[0].hardware se copio del run_meta.json que produjo esa sesion; 'model' describe la ultima sesion"
+}
