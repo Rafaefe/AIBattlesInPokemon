@@ -2,7 +2,7 @@
 
 **Generative Artificial Intelligence (580694), Primavera 2026 — Universidad de Concepción**
 
-Equipo: `[Nombre 1] · [Nombre 2] · [Nombre 3] · [Nombre 4]`
+Equipo: `Pedro Dañobeytia · Rafael Fernández · Cristian González · Daniel González`
 
 Un modelo de lenguaje pequeño y de pesos abiertos actúa como **módulo de decisión de combate**
 de un agente de Pokémon Blue. Recibe el estado del combate (tipos, % de HP y velocidad de ambos
