@@ -8,7 +8,7 @@
 % ============================================================================
 \newcommand{\EQUIPO}{Pedro Dañobeytia \textbullet\ Rafael Fernández \textbullet\ Cristian González \textbullet\ Daniel González}
 \newcommand{\REPO}{github.com/Rafaefe/AIBattlesInPokemon}
-\newcommand{\VIDEO}{\ph{link del video}}
+\newcommand{\VIDEO}{\texttt{https://youtu.be/Nv8rG45ehWA}}
 
 \documentclass[10pt,a4paper]{extarticle}
 \usepackage[utf8]{inputenc}
@@ -64,10 +64,11 @@
 
 % ================================================================ CABECERA ==
 \begin{tcolorbox}[colback=navy,colframe=navy,boxrule=0pt,left=2.5mm,right=2.5mm,top=1.2mm,bottom=1.2mm,arc=1mm,after skip=1mm]
-{\color{white}\bfseries\large Consultar en vez de recordar: tres agentes de 1{,}5B juegan Pok\'emon Blue}\hfill
+{\color{white}\bfseries\large Deliverable 3: agente de IA juega Pok\'emon Blue}\hfill
 {\color{white!80}\footnotesize Deliverable 3 \textbullet\ GenAI (580694) \textbullet\ UdeC}\\[0.6mm]
 {\footnotesize\color{white!85}Equipo:} {\footnotesize\bfseries\color{white}\EQUIPO}\hfill
 {\footnotesize\color{white!85}Repo:} {\footnotesize\color{white}\texttt{\REPO}} \quad
+\par
 {\footnotesize\color{white!85}Video:} {\footnotesize\color{white}\VIDEO}
 \end{tcolorbox}
 
@@ -104,6 +105,7 @@
 \end{tikzpicture}\par}
 {\centering\scriptsize Los tres agentes usan el \textbf{mismo} \texttt{\modelId} (\nParams\,B), greedy, \hw\ (\libs). Verde/lila = agentes (llamadas al modelo); \'ambar = herramientas.\par}
 
+\hspace{1cm}
 \begin{multicols}{2}
 % ============================================================ 1. CONTINUIDAD
 \heading{1. Continuidad con D1 y D2}
@@ -206,6 +208,7 @@ S2 soluci\'on D2 & \accStwoO\,\% & \accStwoH\,\% & \accStwoA\,\% [\ciStwoA] & \c
 \end{itemize}
 \end{multicols}
 
+\hspace{1cm}
 \vspace{-1mm}
 {\centering\scriptsize\color{black!70}Reproducir: \texttt{python -m d3.evaluate} \textbullet\ \texttt{python -m d3.demo [--seed N | --replay orig:ID]} \textbullet\ trazas: \texttt{results\_d3/*/traces/}, \texttt{traces/} \textbullet\ cifras: \texttt{python report/fill\_d3.py}\par}
 \end{document}

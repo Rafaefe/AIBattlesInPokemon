@@ -21,6 +21,10 @@ con la tabla de tipos de la **Generación I**.
 
 ## Deliverable 3 — un sistema de agentes
 
+**Video:** <https://youtu.be/Nv8rG45ehWA> · **Documento técnico:**
+[`report/Deliverable3_Group4.pdf`](report/Deliverable3_Group4.pdf) (fuente:
+[`report/deliverable3_es.tex`](report/deliverable3_es.tex)) · **Trazas del video:** `traces/`
+
 ### Qué cambia respecto del D2
 
 La D2 dejó el diagnóstico: con la descomposición el cuello de botella pasó de *combinar*
