@@ -1,0 +1,1749 @@
+{
+  "sets": {
+    "holdout": {
+      "n_states": 50,
+      "seed": 20260927
+    },
+    "orig": {
+      "n_states": 50,
+      "seed": 20260830
+    }
+  },
+  "model": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": null,
+    "n_params": 1543714304,
+    "device": "cuda",
+    "gpu": "Tesla T4",
+    "dtype": "torch.float32",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.2",
+    "system_prompt": "You are an AI playing Pokemon Blue.",
+    "decoding": "greedy (do_sample=False), default generation config otherwise"
+  },
+  "tables": {
+    "holdout": {
+      "direct": {
+        "label": "B0 Directo (baseline)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 20,
+        "acc_pct": 40.0,
+        "acc_ci95": [
+          27.6,
+          53.8
+        ],
+        "exec_k": 20,
+        "exec_pct": 40.0,
+        "exec_ci95": [
+          27.6,
+          53.8
+        ],
+        "mean_regret": 0.258,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.36,
+        "per_difficulty": {
+          "EASY": "7/17",
+          "MEDIUM": "7/17",
+          "HARD": "6/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 12,
+          "MOVE_2": 15,
+          "MOVE_3": 21,
+          "MOVE_4": 2
+        },
+        "chi2_uniform": 15.1,
+        "chi2_p": 0.0017169197165364818
+      },
+      "notype": {
+        "label": "H  Sin modelo (ignora tipos)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 38,
+        "acc_pct": 76.0,
+        "acc_ci95": [
+          62.6,
+          85.7
+        ],
+        "exec_k": 38,
+        "exec_pct": 76.0,
+        "exec_ci95": [
+          62.6,
+          85.7
+        ],
+        "mean_regret": 0.114,
+        "llm_calls_per_state": 0.0,
+        "seconds_per_state": 0.0,
+        "per_difficulty": {
+          "EASY": "14/17",
+          "MEDIUM": "10/17",
+          "HARD": "14/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 12,
+          "MOVE_2": 15,
+          "MOVE_3": 9,
+          "MOVE_4": 14
+        },
+        "chi2_uniform": 1.7,
+        "chi2_p": 0.6413893691403019
+      },
+      "decomposed_words": {
+        "label": "S2 Solucion D2",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 29,
+        "acc_pct": 58.0,
+        "acc_ci95": [
+          44.2,
+          70.6
+        ],
+        "exec_k": 29,
+        "exec_pct": 58.0,
+        "exec_ci95": [
+          44.2,
+          70.6
+        ],
+        "mean_regret": 0.19,
+        "llm_calls_per_state": 5.12,
+        "seconds_per_state": 0.11,
+        "per_difficulty": {
+          "EASY": "13/17",
+          "MEDIUM": "5/17",
+          "HARD": "11/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 13,
+          "MOVE_2": 10,
+          "MOVE_3": 12,
+          "MOVE_4": 15
+        },
+        "chi2_uniform": 1.0,
+        "chi2_p": 0.7915743930759284
+      },
+      "agents_full": {
+        "label": "D3 Agentes (completo)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 40,
+        "acc_pct": 80.0,
+        "acc_ci95": [
+          67.0,
+          88.8
+        ],
+        "exec_k": 40,
+        "exec_pct": 80.0,
+        "exec_ci95": [
+          67.0,
+          88.8
+        ],
+        "mean_regret": 0.068,
+        "llm_calls_per_state": 52.36,
+        "seconds_per_state": 3.08,
+        "per_difficulty": {
+          "EASY": "16/17",
+          "MEDIUM": "14/17",
+          "HARD": "10/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 11,
+          "MOVE_2": 20,
+          "MOVE_3": 10,
+          "MOVE_4": 9
+        },
+        "chi2_uniform": 6.2,
+        "chi2_p": 0.1040801173431543
+      },
+      "agents_no_rag": {
+        "label": "D3 sin recuperacion",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 24,
+        "acc_pct": 48.0,
+        "acc_ci95": [
+          34.8,
+          61.5
+        ],
+        "exec_k": 24,
+        "exec_pct": 48.0,
+        "exec_ci95": [
+          34.8,
+          61.5
+        ],
+        "mean_regret": 0.279,
+        "llm_calls_per_state": 17.0,
+        "seconds_per_state": 1.35,
+        "per_difficulty": {
+          "EASY": "7/17",
+          "MEDIUM": "9/17",
+          "HARD": "8/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 15,
+          "MOVE_2": 18,
+          "MOVE_3": 12,
+          "MOVE_4": 5
+        },
+        "chi2_uniform": 7.4,
+        "chi2_p": 0.059120316498062354
+      },
+      "agents_no_fewshot": {
+        "label": "D3 sin few-shot",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 44,
+        "acc_pct": 88.0,
+        "acc_ci95": [
+          76.2,
+          94.4
+        ],
+        "exec_k": 44,
+        "exec_pct": 88.0,
+        "exec_ci95": [
+          76.2,
+          94.4
+        ],
+        "mean_regret": 0.037,
+        "llm_calls_per_state": 49.62,
+        "seconds_per_state": 0.47,
+        "per_difficulty": {
+          "EASY": "16/17",
+          "MEDIUM": "15/17",
+          "HARD": "13/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 11,
+          "MOVE_2": 20,
+          "MOVE_3": 7,
+          "MOVE_4": 12
+        },
+        "chi2_uniform": 7.1,
+        "chi2_p": 0.06816974143256056
+      },
+      "agents_no_verifier": {
+        "label": "D3 sin Verificador",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 42,
+        "acc_pct": 84.0,
+        "acc_ci95": [
+          71.5,
+          91.7
+        ],
+        "exec_k": 42,
+        "exec_pct": 84.0,
+        "exec_ci95": [
+          71.5,
+          91.7
+        ],
+        "mean_regret": 0.052,
+        "llm_calls_per_state": 31.76,
+        "seconds_per_state": 0.33,
+        "per_difficulty": {
+          "EASY": "16/17",
+          "MEDIUM": "15/17",
+          "HARD": "11/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 13,
+          "MOVE_2": 19,
+          "MOVE_3": 7,
+          "MOVE_4": 11
+        },
+        "chi2_uniform": 6.0,
+        "chi2_p": 0.11161022509471265
+      },
+      "agents_no_decomposition": {
+        "label": "D3 sin descomposicion",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 19,
+        "acc_pct": 38.0,
+        "acc_ci95": [
+          25.9,
+          51.8
+        ],
+        "exec_k": 19,
+        "exec_pct": 38.0,
+        "exec_ci95": [
+          25.9,
+          51.8
+        ],
+        "mean_regret": 0.336,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.75,
+        "per_difficulty": {
+          "EASY": "4/17",
+          "MEDIUM": "9/17",
+          "HARD": "6/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 0,
+          "MOVE_2": 32,
+          "MOVE_3": 16,
+          "MOVE_4": 2
+        },
+        "chi2_uniform": 52.7,
+        "chi2_p": 2.103489962596336e-11
+      },
+      "agents_no_ranking": {
+        "label": "D3 sin tabla ordenada",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 35,
+        "acc_pct": 70.0,
+        "acc_ci95": [
+          56.2,
+          80.9
+        ],
+        "exec_k": 35,
+        "exec_pct": 70.0,
+        "exec_ci95": [
+          56.2,
+          80.9
+        ],
+        "mean_regret": 0.123,
+        "llm_calls_per_state": 52.36,
+        "seconds_per_state": 0.74,
+        "per_difficulty": {
+          "EASY": "12/17",
+          "MEDIUM": "13/17",
+          "HARD": "10/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 14,
+          "MOVE_2": 25,
+          "MOVE_3": 7,
+          "MOVE_4": 4
+        },
+        "chi2_uniform": 20.9,
+        "chi2_p": 0.00011149310059951656
+      }
+    },
+    "orig": {
+      "direct": {
+        "label": "B0 Directo (baseline)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 14,
+        "acc_pct": 28.0,
+        "acc_ci95": [
+          17.5,
+          41.7
+        ],
+        "exec_k": 14,
+        "exec_pct": 28.0,
+        "exec_ci95": [
+          17.5,
+          41.7
+        ],
+        "mean_regret": 0.333,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.34,
+        "per_difficulty": {
+          "EASY": "6/17",
+          "MEDIUM": "6/17",
+          "HARD": "2/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 14,
+          "MOVE_2": 23,
+          "MOVE_3": 9,
+          "MOVE_4": 4
+        },
+        "chi2_uniform": 15.8,
+        "chi2_p": 0.001269964300186854
+      },
+      "notype": {
+        "label": "H  Sin modelo (ignora tipos)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 27,
+        "acc_pct": 54.0,
+        "acc_ci95": [
+          40.4,
+          67.0
+        ],
+        "exec_k": 27,
+        "exec_pct": 54.0,
+        "exec_ci95": [
+          40.4,
+          67.0
+        ],
+        "mean_regret": 0.222,
+        "llm_calls_per_state": 0.0,
+        "seconds_per_state": 0.0,
+        "per_difficulty": {
+          "EASY": "7/17",
+          "MEDIUM": "7/17",
+          "HARD": "13/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 18,
+          "MOVE_2": 12,
+          "MOVE_3": 7,
+          "MOVE_4": 13
+        },
+        "chi2_uniform": 4.9,
+        "chi2_p": 0.18079799409696135
+      },
+      "decomposed_words": {
+        "label": "S2 Solucion D2",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 24,
+        "acc_pct": 48.0,
+        "acc_ci95": [
+          34.8,
+          61.5
+        ],
+        "exec_k": 24,
+        "exec_pct": 48.0,
+        "exec_ci95": [
+          34.8,
+          61.5
+        ],
+        "mean_regret": 0.254,
+        "llm_calls_per_state": 5.16,
+        "seconds_per_state": 0.35,
+        "per_difficulty": {
+          "EASY": "8/17",
+          "MEDIUM": "7/17",
+          "HARD": "9/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 13,
+          "MOVE_2": 15,
+          "MOVE_3": 10,
+          "MOVE_4": 12
+        },
+        "chi2_uniform": 1.0,
+        "chi2_p": 0.7915743930759284
+      },
+      "agents_full": {
+        "label": "D3 Agentes (completo)",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 37,
+        "acc_pct": 74.0,
+        "acc_ci95": [
+          60.4,
+          84.1
+        ],
+        "exec_k": 37,
+        "exec_pct": 74.0,
+        "exec_ci95": [
+          60.4,
+          84.1
+        ],
+        "mean_regret": 0.112,
+        "llm_calls_per_state": 53.28,
+        "seconds_per_state": 6.74,
+        "per_difficulty": {
+          "EASY": "14/17",
+          "MEDIUM": "13/17",
+          "HARD": "10/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 13,
+          "MOVE_2": 11,
+          "MOVE_3": 15,
+          "MOVE_4": 11
+        },
+        "chi2_uniform": 0.9,
+        "chi2_p": 0.8302513889646287
+      },
+      "agents_no_rag": {
+        "label": "D3 sin recuperacion",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 17,
+        "acc_pct": 34.0,
+        "acc_ci95": [
+          22.4,
+          47.8
+        ],
+        "exec_k": 17,
+        "exec_pct": 34.0,
+        "exec_ci95": [
+          22.4,
+          47.8
+        ],
+        "mean_regret": 0.361,
+        "llm_calls_per_state": 16.88,
+        "seconds_per_state": 2.68,
+        "per_difficulty": {
+          "EASY": "5/17",
+          "MEDIUM": "6/17",
+          "HARD": "6/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 10,
+          "MOVE_2": 21,
+          "MOVE_3": 8,
+          "MOVE_4": 11
+        },
+        "chi2_uniform": 8.1,
+        "chi2_p": 0.044386959367383204
+      },
+      "agents_no_fewshot": {
+        "label": "D3 sin few-shot",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 43,
+        "acc_pct": 86.0,
+        "acc_ci95": [
+          73.8,
+          93.0
+        ],
+        "exec_k": 43,
+        "exec_pct": 86.0,
+        "exec_ci95": [
+          73.8,
+          93.0
+        ],
+        "mean_regret": 0.066,
+        "llm_calls_per_state": 49.18,
+        "seconds_per_state": 1.42,
+        "per_difficulty": {
+          "EASY": "15/17",
+          "MEDIUM": "15/17",
+          "HARD": "13/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 15,
+          "MOVE_2": 9,
+          "MOVE_3": 15,
+          "MOVE_4": 11
+        },
+        "chi2_uniform": 2.2,
+        "chi2_p": 0.5398700347618002
+      },
+      "agents_no_verifier": {
+        "label": "D3 sin Verificador",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 43,
+        "acc_pct": 86.0,
+        "acc_ci95": [
+          73.8,
+          93.0
+        ],
+        "exec_k": 43,
+        "exec_pct": 86.0,
+        "exec_ci95": [
+          73.8,
+          93.0
+        ],
+        "mean_regret": 0.062,
+        "llm_calls_per_state": 31.52,
+        "seconds_per_state": 0.24,
+        "per_difficulty": {
+          "EASY": "15/17",
+          "MEDIUM": "15/17",
+          "HARD": "13/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 13,
+          "MOVE_2": 11,
+          "MOVE_3": 14,
+          "MOVE_4": 12
+        },
+        "chi2_uniform": 0.4,
+        "chi2_p": 0.9402424948393607
+      },
+      "agents_no_decomposition": {
+        "label": "D3 sin descomposicion",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 9,
+        "acc_pct": 18.0,
+        "acc_ci95": [
+          9.8,
+          30.8
+        ],
+        "exec_k": 9,
+        "exec_pct": 18.0,
+        "exec_ci95": [
+          9.8,
+          30.8
+        ],
+        "mean_regret": 0.389,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.74,
+        "per_difficulty": {
+          "EASY": "3/17",
+          "MEDIUM": "4/17",
+          "HARD": "2/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 4,
+          "MOVE_2": 35,
+          "MOVE_3": 8,
+          "MOVE_4": 3
+        },
+        "chi2_uniform": 55.1,
+        "chi2_p": 6.473122188353289e-12
+      },
+      "agents_no_ranking": {
+        "label": "D3 sin tabla ordenada",
+        "n": 50,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 27,
+        "acc_pct": 54.0,
+        "acc_ci95": [
+          40.4,
+          67.0
+        ],
+        "exec_k": 27,
+        "exec_pct": 54.0,
+        "exec_ci95": [
+          40.4,
+          67.0
+        ],
+        "mean_regret": 0.227,
+        "llm_calls_per_state": 53.28,
+        "seconds_per_state": 0.74,
+        "per_difficulty": {
+          "EASY": "9/17",
+          "MEDIUM": "10/17",
+          "HARD": "8/16"
+        },
+        "chosen_positions": {
+          "MOVE_1": 18,
+          "MOVE_2": 19,
+          "MOVE_3": 8,
+          "MOVE_4": 5
+        },
+        "chi2_uniform": 11.9,
+        "chi2_p": 0.007662291812591954
+      }
+    },
+    "all": {
+      "direct": {
+        "label": "B0 Directo (baseline)",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 34,
+        "acc_pct": 34.0,
+        "acc_ci95": [
+          25.5,
+          43.7
+        ],
+        "exec_k": 34,
+        "exec_pct": 34.0,
+        "exec_ci95": [
+          25.5,
+          43.7
+        ],
+        "mean_regret": 0.296,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.35,
+        "per_difficulty": {
+          "EASY": "13/34",
+          "MEDIUM": "13/34",
+          "HARD": "8/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 26,
+          "MOVE_2": 38,
+          "MOVE_3": 30,
+          "MOVE_4": 6
+        },
+        "chi2_uniform": 22.2,
+        "chi2_p": 5.8144270142774704e-05
+      },
+      "notype": {
+        "label": "H  Sin modelo (ignora tipos)",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 65,
+        "acc_pct": 65.0,
+        "acc_ci95": [
+          55.3,
+          73.6
+        ],
+        "exec_k": 65,
+        "exec_pct": 65.0,
+        "exec_ci95": [
+          55.3,
+          73.6
+        ],
+        "mean_regret": 0.168,
+        "llm_calls_per_state": 0.0,
+        "seconds_per_state": 0.0,
+        "per_difficulty": {
+          "EASY": "21/34",
+          "MEDIUM": "17/34",
+          "HARD": "27/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 30,
+          "MOVE_2": 27,
+          "MOVE_3": 16,
+          "MOVE_4": 27
+        },
+        "chi2_uniform": 4.6,
+        "chi2_p": 0.20700045733107048
+      },
+      "decomposed_words": {
+        "label": "S2 Solucion D2",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 53,
+        "acc_pct": 53.0,
+        "acc_ci95": [
+          43.3,
+          62.5
+        ],
+        "exec_k": 53,
+        "exec_pct": 53.0,
+        "exec_ci95": [
+          43.3,
+          62.5
+        ],
+        "mean_regret": 0.222,
+        "llm_calls_per_state": 5.14,
+        "seconds_per_state": 0.23,
+        "per_difficulty": {
+          "EASY": "21/34",
+          "MEDIUM": "12/34",
+          "HARD": "20/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 26,
+          "MOVE_2": 25,
+          "MOVE_3": 22,
+          "MOVE_4": 27
+        },
+        "chi2_uniform": 0.6,
+        "chi2_p": 0.9055252103551126
+      },
+      "agents_full": {
+        "label": "D3 Agentes (completo)",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 77,
+        "acc_pct": 77.0,
+        "acc_ci95": [
+          67.8,
+          84.2
+        ],
+        "exec_k": 77,
+        "exec_pct": 77.0,
+        "exec_ci95": [
+          67.8,
+          84.2
+        ],
+        "mean_regret": 0.09,
+        "llm_calls_per_state": 52.82,
+        "seconds_per_state": 4.91,
+        "per_difficulty": {
+          "EASY": "30/34",
+          "MEDIUM": "27/34",
+          "HARD": "20/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 24,
+          "MOVE_2": 31,
+          "MOVE_3": 25,
+          "MOVE_4": 20
+        },
+        "chi2_uniform": 2.5,
+        "chi2_p": 0.4789163768174306
+      },
+      "agents_no_rag": {
+        "label": "D3 sin recuperacion",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 41,
+        "acc_pct": 41.0,
+        "acc_ci95": [
+          31.9,
+          50.8
+        ],
+        "exec_k": 41,
+        "exec_pct": 41.0,
+        "exec_ci95": [
+          31.9,
+          50.8
+        ],
+        "mean_regret": 0.32,
+        "llm_calls_per_state": 16.94,
+        "seconds_per_state": 2.01,
+        "per_difficulty": {
+          "EASY": "12/34",
+          "MEDIUM": "15/34",
+          "HARD": "14/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 25,
+          "MOVE_2": 39,
+          "MOVE_3": 20,
+          "MOVE_4": 16
+        },
+        "chi2_uniform": 12.1,
+        "chi2_p": 0.007114078622030727
+      },
+      "agents_no_fewshot": {
+        "label": "D3 sin few-shot",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 87,
+        "acc_pct": 87.0,
+        "acc_ci95": [
+          79.0,
+          92.2
+        ],
+        "exec_k": 87,
+        "exec_pct": 87.0,
+        "exec_ci95": [
+          79.0,
+          92.2
+        ],
+        "mean_regret": 0.052,
+        "llm_calls_per_state": 49.4,
+        "seconds_per_state": 0.94,
+        "per_difficulty": {
+          "EASY": "31/34",
+          "MEDIUM": "30/34",
+          "HARD": "26/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 26,
+          "MOVE_2": 29,
+          "MOVE_3": 22,
+          "MOVE_4": 23
+        },
+        "chi2_uniform": 1.2,
+        "chi2_p": 0.753004311656458
+      },
+      "agents_no_verifier": {
+        "label": "D3 sin Verificador",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 85,
+        "acc_pct": 85.0,
+        "acc_ci95": [
+          76.7,
+          90.7
+        ],
+        "exec_k": 85,
+        "exec_pct": 85.0,
+        "exec_ci95": [
+          76.7,
+          90.7
+        ],
+        "mean_regret": 0.057,
+        "llm_calls_per_state": 31.64,
+        "seconds_per_state": 0.28,
+        "per_difficulty": {
+          "EASY": "31/34",
+          "MEDIUM": "30/34",
+          "HARD": "24/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 26,
+          "MOVE_2": 30,
+          "MOVE_3": 21,
+          "MOVE_4": 23
+        },
+        "chi2_uniform": 1.8,
+        "chi2_p": 0.6062694109468034
+      },
+      "agents_no_decomposition": {
+        "label": "D3 sin descomposicion",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 28,
+        "acc_pct": 28.0,
+        "acc_ci95": [
+          20.1,
+          37.5
+        ],
+        "exec_k": 28,
+        "exec_pct": 28.0,
+        "exec_ci95": [
+          20.1,
+          37.5
+        ],
+        "mean_regret": 0.362,
+        "llm_calls_per_state": 1.0,
+        "seconds_per_state": 0.74,
+        "per_difficulty": {
+          "EASY": "7/34",
+          "MEDIUM": "13/34",
+          "HARD": "8/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 4,
+          "MOVE_2": 67,
+          "MOVE_3": 24,
+          "MOVE_4": 5
+        },
+        "chi2_uniform": 104.2,
+        "chi2_p": 1.9038678521158743e-22
+      },
+      "agents_no_ranking": {
+        "label": "D3 sin tabla ordenada",
+        "n": 100,
+        "strict_pct": 100.0,
+        "interp_pct": 100.0,
+        "acc_k": 62,
+        "acc_pct": 62.0,
+        "acc_ci95": [
+          52.2,
+          70.9
+        ],
+        "exec_k": 62,
+        "exec_pct": 62.0,
+        "exec_ci95": [
+          52.2,
+          70.9
+        ],
+        "mean_regret": 0.175,
+        "llm_calls_per_state": 52.82,
+        "seconds_per_state": 0.74,
+        "per_difficulty": {
+          "EASY": "21/34",
+          "MEDIUM": "23/34",
+          "HARD": "18/32"
+        },
+        "chosen_positions": {
+          "MOVE_1": 32,
+          "MOVE_2": 44,
+          "MOVE_3": 15,
+          "MOVE_4": 9
+        },
+        "chi2_uniform": 30.6,
+        "chi2_p": 1.0121164910438028e-06
+      }
+    }
+  },
+  "comparisons": {
+    "holdout": [
+      {
+        "a": "notype",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 20,
+        "b_right_a_wrong": 2,
+        "p_value": 0.00012111663818359375
+      },
+      {
+        "a": "decomposed_words",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 14,
+        "b_right_a_wrong": 5,
+        "p_value": 0.063568115234375
+      },
+      {
+        "a": "agents_full",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 22,
+        "b_right_a_wrong": 2,
+        "p_value": 3.5881996154785156e-05
+      },
+      {
+        "a": "agents_no_rag",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 9,
+        "b_right_a_wrong": 5,
+        "p_value": 0.4239501953125
+      },
+      {
+        "a": "agents_no_fewshot",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 25,
+        "b_right_a_wrong": 1,
+        "p_value": 8.046627044677734e-07
+      },
+      {
+        "a": "agents_no_verifier",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 24,
+        "b_right_a_wrong": 2,
+        "p_value": 1.049041748046875e-05
+      },
+      {
+        "a": "agents_no_decomposition",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 6,
+        "b_right_a_wrong": 7,
+        "p_value": 1.0
+      },
+      {
+        "a": "agents_no_ranking",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 20,
+        "b_right_a_wrong": 5,
+        "p_value": 0.004077315330505371
+      },
+      {
+        "a": "agents_full",
+        "b": "decomposed_words",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 17,
+        "b_right_a_wrong": 6,
+        "p_value": 0.03468966484069824
+      },
+      {
+        "a": "agents_full",
+        "b": "notype",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 10,
+        "b_right_a_wrong": 8,
+        "p_value": 0.8145294189453125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_rag",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 18,
+        "b_right_a_wrong": 2,
+        "p_value": 0.0004024505615234375
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_fewshot",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 0,
+        "b_right_a_wrong": 4,
+        "p_value": 0.125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_verifier",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 2,
+        "b_right_a_wrong": 4,
+        "p_value": 0.6875
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_decomposition",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 22,
+        "b_right_a_wrong": 1,
+        "p_value": 5.7220458984375e-06
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_ranking",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 7,
+        "b_right_a_wrong": 2,
+        "p_value": 0.1796875
+      }
+    ],
+    "orig": [
+      {
+        "a": "notype",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 16,
+        "b_right_a_wrong": 3,
+        "p_value": 0.004425048828125
+      },
+      {
+        "a": "decomposed_words",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 13,
+        "b_right_a_wrong": 3,
+        "p_value": 0.021270751953125
+      },
+      {
+        "a": "agents_full",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 25,
+        "b_right_a_wrong": 2,
+        "p_value": 5.647540092468262e-06
+      },
+      {
+        "a": "agents_no_rag",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 5,
+        "b_right_a_wrong": 2,
+        "p_value": 0.453125
+      },
+      {
+        "a": "agents_no_fewshot",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 30,
+        "b_right_a_wrong": 1,
+        "p_value": 2.9802322387695312e-08
+      },
+      {
+        "a": "agents_no_verifier",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 30,
+        "b_right_a_wrong": 1,
+        "p_value": 2.9802322387695312e-08
+      },
+      {
+        "a": "agents_no_decomposition",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 3,
+        "b_right_a_wrong": 8,
+        "p_value": 0.2265625
+      },
+      {
+        "a": "agents_no_ranking",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 15,
+        "b_right_a_wrong": 2,
+        "p_value": 0.002349853515625
+      },
+      {
+        "a": "agents_full",
+        "b": "decomposed_words",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 18,
+        "b_right_a_wrong": 5,
+        "p_value": 0.010622024536132812
+      },
+      {
+        "a": "agents_full",
+        "b": "notype",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 15,
+        "b_right_a_wrong": 5,
+        "p_value": 0.04138946533203125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_rag",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 23,
+        "b_right_a_wrong": 3,
+        "p_value": 8.797645568847656e-05
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_fewshot",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 0,
+        "b_right_a_wrong": 6,
+        "p_value": 0.03125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_verifier",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 1,
+        "b_right_a_wrong": 7,
+        "p_value": 0.0703125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_decomposition",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 29,
+        "b_right_a_wrong": 1,
+        "p_value": 5.774199962615967e-08
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_ranking",
+        "metric": "executable_correct",
+        "n": 50,
+        "a_right_b_wrong": 12,
+        "b_right_a_wrong": 2,
+        "p_value": 0.012939453125
+      }
+    ],
+    "all": [
+      {
+        "a": "notype",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 36,
+        "b_right_a_wrong": 5,
+        "p_value": 7.84157236921601e-07
+      },
+      {
+        "a": "decomposed_words",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 27,
+        "b_right_a_wrong": 8,
+        "p_value": 0.001878225477412343
+      },
+      {
+        "a": "agents_full",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 47,
+        "b_right_a_wrong": 4,
+        "p_value": 2.4163071543625847e-10
+      },
+      {
+        "a": "agents_no_rag",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 14,
+        "b_right_a_wrong": 7,
+        "p_value": 0.18924713134765625
+      },
+      {
+        "a": "agents_no_fewshot",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 55,
+        "b_right_a_wrong": 2,
+        "p_value": 2.295386103412511e-14
+      },
+      {
+        "a": "agents_no_verifier",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 54,
+        "b_right_a_wrong": 3,
+        "p_value": 4.290179322907761e-13
+      },
+      {
+        "a": "agents_no_decomposition",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 9,
+        "b_right_a_wrong": 15,
+        "p_value": 0.30745625495910645
+      },
+      {
+        "a": "agents_no_ranking",
+        "b": "direct",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 35,
+        "b_right_a_wrong": 7,
+        "p_value": 1.5097200957825407e-05
+      },
+      {
+        "a": "agents_full",
+        "b": "decomposed_words",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 35,
+        "b_right_a_wrong": 11,
+        "p_value": 0.0005355850721002753
+      },
+      {
+        "a": "agents_full",
+        "b": "notype",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 25,
+        "b_right_a_wrong": 13,
+        "p_value": 0.07295138851623051
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_rag",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 41,
+        "b_right_a_wrong": 5,
+        "p_value": 4.405936238072172e-08
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_fewshot",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 0,
+        "b_right_a_wrong": 10,
+        "p_value": 0.001953125
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_verifier",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 3,
+        "b_right_a_wrong": 11,
+        "p_value": 0.057373046875
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_decomposition",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 51,
+        "b_right_a_wrong": 2,
+        "p_value": 3.1796787425264483e-13
+      },
+      {
+        "a": "agents_full",
+        "b": "agents_no_ranking",
+        "metric": "executable_correct",
+        "n": 100,
+        "a_right_b_wrong": 19,
+        "b_right_a_wrong": 4,
+        "p_value": 0.002599477767944336
+      }
+    ]
+  },
+  "agents": {
+    "agents_full": {
+      "states": 100,
+      "facts": 498,
+      "facts_right_pct": 90.6,
+      "always_x1_right_pct": 66.1,
+      "lookup_pct": 100.0,
+      "right_section_pct": 100.0,
+      "facts_revised": 99,
+      "facts_unverified": 0,
+      "states_plan_missed_a_move": 17,
+      "states_final_differs_from_calculator": 10,
+      "llm_calls_per_state": 52.82
+    },
+    "agents_no_rag": {
+      "states": 100,
+      "facts": 498,
+      "facts_right_pct": 31.9,
+      "always_x1_right_pct": 66.1,
+      "lookup_pct": 0.0,
+      "right_section_pct": 0.0,
+      "facts_revised": 498,
+      "facts_unverified": 498,
+      "states_plan_missed_a_move": 17,
+      "states_final_differs_from_calculator": 19,
+      "llm_calls_per_state": 16.94
+    },
+    "agents_no_fewshot": {
+      "states": 100,
+      "facts": 498,
+      "facts_right_pct": 100.0,
+      "always_x1_right_pct": 66.1,
+      "lookup_pct": 100.0,
+      "right_section_pct": 100.0,
+      "facts_revised": 59,
+      "facts_unverified": 0,
+      "states_plan_missed_a_move": 17,
+      "states_final_differs_from_calculator": 7,
+      "llm_calls_per_state": 49.4
+    },
+    "agents_no_verifier": {
+      "states": 100,
+      "facts": 498,
+      "facts_right_pct": 89.4,
+      "always_x1_right_pct": 66.1,
+      "lookup_pct": 98.8,
+      "right_section_pct": 98.8,
+      "facts_revised": 0,
+      "facts_unverified": 0,
+      "states_plan_missed_a_move": 17,
+      "states_final_differs_from_calculator": 7,
+      "llm_calls_per_state": 31.64
+    },
+    "agents_no_decomposition": {
+      "states": 100,
+      "facts": 0,
+      "facts_right_pct": null,
+      "always_x1_right_pct": null,
+      "lookup_pct": null,
+      "right_section_pct": null,
+      "facts_revised": 0,
+      "facts_unverified": 0,
+      "states_plan_missed_a_move": 0,
+      "states_final_differs_from_calculator": 0,
+      "llm_calls_per_state": 1.0
+    },
+    "agents_no_ranking": {
+      "states": 100,
+      "facts": 498,
+      "facts_right_pct": 90.6,
+      "always_x1_right_pct": 66.1,
+      "lookup_pct": 100.0,
+      "right_section_pct": 100.0,
+      "facts_revised": 99,
+      "facts_unverified": 0,
+      "states_plan_missed_a_move": 17,
+      "states_final_differs_from_calculator": 27,
+      "llm_calls_per_state": 52.82
+    }
+  },
+  "revision_effect": {
+    "facts_fixed_by_loop": 52,
+    "facts_broken_by_loop": 46
+  },
+  "wrong_by_defender": {
+    "agents_full": {
+      "Water": 22,
+      "Ghost": 8,
+      "Ground": 7,
+      "Psychic": 5,
+      "Bug": 2,
+      "Fire": 2,
+      "Fighting": 1
+    },
+    "agents_no_rag": {
+      "Psychic": 50,
+      "Poison": 47,
+      "Fighting": 35,
+      "Rock": 32,
+      "Water": 31,
+      "Ghost": 26,
+      "Grass": 20,
+      "Ice": 20,
+      "Bug": 18,
+      "Electric": 18,
+      "Ground": 17,
+      "Flying": 13,
+      "Fire": 12
+    },
+    "agents_no_fewshot": {},
+    "agents_no_verifier": {
+      "Water": 10,
+      "Poison": 9,
+      "Electric": 6,
+      "Flying": 5,
+      "Rock": 5,
+      "Ground": 4,
+      "Ice": 4,
+      "Bug": 3,
+      "Ghost": 3,
+      "Fighting": 2,
+      "Fire": 2
+    },
+    "agents_no_decomposition": {},
+    "agents_no_ranking": {
+      "Water": 22,
+      "Ghost": 8,
+      "Ground": 7,
+      "Psychic": 5,
+      "Bug": 2,
+      "Fire": 2,
+      "Fighting": 1
+    }
+  },
+  "failures_full": [
+    {
+      "case_id": "holdout:48",
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.1667,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Psychic->Psychic: dijo 'normal damage', Gen I x0.5"
+      ]
+    },
+    {
+      "case_id": "holdout:14",
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_3",
+      "regret": 0.5833,
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "holdout:27",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_2",
+      "regret": 0.311,
+      "cause": "plan incompleto",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "holdout:37",
+      "difficulty": "HARD",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_4",
+      "regret": 0.1467,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Bug->Water: dijo 'no effect', Gen I x1",
+        "Ghost->Water: dijo 'not very effective', Gen I x1",
+        "Psychic->Water: dijo 'no effect', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "holdout:35",
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.0104,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Water->Ground: dijo 'normal damage', Gen I x2"
+      ]
+    },
+    {
+      "case_id": "holdout:39",
+      "difficulty": "HARD",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_2",
+      "regret": 0.1667,
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "holdout:41",
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.6111,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Water: dijo 'super effective', Gen I x1",
+        "Normal->Water: dijo 'super effective', Gen I x1",
+        "Flying->Water: dijo 'no effect', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "holdout:22",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.2308,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Water->Ground: dijo 'normal damage', Gen I x2"
+      ]
+    },
+    {
+      "case_id": "holdout:21",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.6875,
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "holdout:44",
+      "difficulty": "HARD",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_4",
+      "regret": 0.4902,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Psychic->Psychic: dijo 'normal damage', Gen I x0.5"
+      ]
+    },
+    {
+      "case_id": "orig:41",
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.0104,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Ghost: dijo 'normal damage', Gen I x0",
+        "Normal->Ghost: dijo 'normal damage', Gen I x0"
+      ]
+    },
+    {
+      "case_id": "orig:27",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_3",
+      "regret": 0.2344,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Water: dijo 'super effective', Gen I x1",
+        "Normal->Water: dijo 'super effective', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "orig:31",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.2099,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Rock->Water: dijo 'no effect', Gen I x1",
+        "Bug->Water: dijo 'no effect', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "orig:50",
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.5625,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Water->Fire: dijo 'normal damage', Gen I x2"
+      ]
+    },
+    {
+      "case_id": "orig:8",
+      "difficulty": "EASY",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_1",
+      "regret": 0.5833,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Water: dijo 'super effective', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "orig:29",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.35,
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "orig:47",
+      "difficulty": "HARD",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_3",
+      "regret": 1.0,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Ghost: dijo 'normal damage', Gen I x0",
+        "Fighting->Ghost: dijo 'normal damage', Gen I x0"
+      ]
+    },
+    {
+      "case_id": "orig:43",
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_4",
+      "regret": 0.537,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Psychic->Psychic: dijo 'normal damage', Gen I x0.5"
+      ]
+    },
+    {
+      "case_id": "orig:48",
+      "difficulty": "HARD",
+      "chosen": "MOVE_3",
+      "reference": "MOVE_4",
+      "regret": 0.0519,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Ghost->Water: dijo 'not very effective', Gen I x1",
+        "Psychic->Water: dijo 'no effect', Gen I x1",
+        "Rock->Water: dijo 'no effect', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "orig:18",
+      "difficulty": "MEDIUM",
+      "chosen": "MOVE_4",
+      "reference": "MOVE_1",
+      "regret": 0.2,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Water: dijo 'super effective', Gen I x1"
+      ]
+    },
+    {
+      "case_id": "orig:36",
+      "difficulty": "HARD",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_1",
+      "regret": 0.15,
+      "cause": "plan incompleto",
+      "wrong_facts": []
+    },
+    {
+      "case_id": "orig:11",
+      "difficulty": "EASY",
+      "chosen": "MOVE_2",
+      "reference": "MOVE_3",
+      "regret": 1.0,
+      "cause": "hecho de tipo incorrecto",
+      "wrong_facts": [
+        "Normal->Ghost: dijo 'normal damage', Gen I x0",
+        "Normal->Ghost: dijo 'normal damage', Gen I x0"
+      ]
+    },
+    {
+      "case_id": "orig:10",
+      "difficulty": "EASY",
+      "chosen": "MOVE_1",
+      "reference": "MOVE_2",
+      "regret": 0.7173,
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
+      "wrong_facts": []
+    }
+  ]
+}

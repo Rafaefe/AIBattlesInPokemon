@@ -1,0 +1,214 @@
+% ============================================================================
+% Deliverable 3 - Generative Artificial Intelligence (580694), Primavera 2026
+% Documento tecnico: UNA pagina vertical.
+%
+% Las cifras NO se escriben a mano: salen de results_d3/ via
+%     python -m d3.report results_d3 && python report/fill_d3.py results_d3
+% que genera report/d3_numbers.tex. Compilar:  pdflatex deliverable3_es.tex (x2)
+% ============================================================================
+\newcommand{\EQUIPO}{Pedro Dañobeytia \textbullet\ Rafael Fernández \textbullet\ Cristian González \textbullet\ Daniel González}
+\newcommand{\REPO}{github.com/Rafaefe/AIBattlesInPokemon}
+\newcommand{\VIDEO}{\texttt{https://youtu.be/Nv8rG45ehWA}}
+
+\documentclass[10pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.7cm,top=0.5cm,bottom=0.4cm]{geometry}
+\usepackage{helvet}\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{microtype}
+\usetikzlibrary{arrows.meta,positioning}
+
+\hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=3000 \emergencystretch=2.5em
+
+\definecolor{navy}{HTML}{16314F}
+\definecolor{steel}{HTML}{3C5A80}
+\definecolor{amber}{HTML}{B45309}
+\definecolor{crimson}{HTML}{9B1C1C}
+\definecolor{teal}{HTML}{0F766E}
+\definecolor{rule}{HTML}{C9D2DE}
+\definecolor{note}{HTML}{FDF3D8}
+\definecolor{mint}{HTML}{E6F4F1}
+\definecolor{lav}{HTML}{EFEAF7}
+\definecolor{plum}{HTML}{6B3FA0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4mm}
+\setlength{\columnsep}{5mm}
+\setlength{\multicolsep}{1pt}
+\setlength{\tabcolsep}{3pt}
+\pagestyle{empty}
+
+\newcommand{\ph}[1]{\colorbox{yellow!60}{\textcolor{black}{\textbf{#1}}}}
+\input{d3_numbers.tex}
+
+\newcommand{\heading}[1]{%
+  \par\vspace{0.8mm}\noindent
+  {\color{navy}\bfseries\MakeUppercase{#1}}\par\vspace{0.2mm}
+  {\color{amber}\hrule height 0.8pt}\vspace{0.6mm}\noindent\ignorespaces}
+\newtcolorbox{keybox}[1]{colback=note,colframe=amber,boxrule=0.6pt,left=1.2mm,right=1.2mm,top=0.6mm,bottom=0.6mm,arc=1mm,
+  before skip=1mm,after skip=0.6mm,fonttitle=\bfseries,coltitle=white,colbacktitle=amber,title={#1}}
+\newtcolorbox{failbox}[1]{colback=white,colframe=crimson,boxrule=0.6pt,left=1.2mm,right=1.2mm,top=0.6mm,bottom=0.6mm,arc=1mm,
+  before skip=1mm,after skip=0.6mm,fonttitle=\bfseries,coltitle=white,colbacktitle=crimson,title={#1}}
+\setlist[itemize]{leftmargin=3mm,itemsep=0.2mm,topsep=0.3mm,parsep=0pt}
+
+\begin{document}
+\small
+
+% ================================================================ CABECERA ==
+\begin{tcolorbox}[colback=navy,colframe=navy,boxrule=0pt,left=2.5mm,right=2.5mm,top=1.2mm,bottom=1.2mm,arc=1mm,after skip=1mm]
+{\color{white}\bfseries\large Deliverable 3: agente de IA juega Pok\'emon Blue}\hfill
+{\color{white!80}\footnotesize Deliverable 3 \textbullet\ GenAI (580694) \textbullet\ UdeC}\\[0.6mm]
+{\footnotesize\color{white!85}Equipo:} {\footnotesize\bfseries\color{white}\EQUIPO}\hfill
+{\footnotesize\color{white!85}Repo:} {\footnotesize\color{white}\texttt{\REPO}} \quad
+\par
+{\footnotesize\color{white!85}Video:} {\footnotesize\color{white}\VIDEO}
+\end{tcolorbox}
+
+% ================================================================== GRAFO ==
+{\centering
+\begin{tikzpicture}[font=\footnotesize,
+  agent/.style={draw=teal,fill=mint,line width=0.9pt,rounded corners=2pt,align=center,inner sep=2.5pt,minimum height=12mm,minimum width=29mm},
+  ver/.style={agent,draw=plum,fill=lav},
+  tool/.style={draw=amber,fill=note,rounded corners=1pt,align=center,inner sep=2pt,minimum height=8.5mm},
+  io/.style={draw=navy,fill=white,rounded corners=1pt,align=center,inner sep=2pt,minimum height=7.5mm,font=\footnotesize\bfseries},
+  arr/.style={-{Stealth[length=1.6mm]},line width=0.6pt,draw=navy},
+  lbl/.style={font=\scriptsize,fill=white,inner sep=0.7pt,align=center}]
+\node[io] (env) {Estado};
+\node[agent,right=10mm of env] (co) {\textbf{COORDINADOR}\\{\scriptsize planifica y da la orden}\\{\scriptsize\texttt{coordinator.v2.md}}};
+\node[agent,right=40mm of co] (an) {\textbf{ANALISTA DE TIPOS}\\{\scriptsize un hecho por llamada}\\{\scriptsize\texttt{analyst.v2.md}}};
+\node[ver,right=28mm of an] (ve) {\textbf{VERIFICADOR}\\{\scriptsize relee la nota}\\{\scriptsize\texttt{verifier.v2.md}}};
+\node[tool,below=8mm of an] (kb) {\textbf{type\_lookup}\\{\scriptsize notas Gen I, l\'ineas A--D}};
+\node[tool,below=8mm of co] (calc) {\textbf{calculadora}\\{\scriptsize pot.$\times$prec.$\times$STAB$\times$ef.}};
+\node[io,left=10mm of calc] (out) {MOVE\_N};
+\draw[arr] (env) -- (co);
+\draw[arr] ([yshift=2mm]co.east) -- node[lbl,above]{(tipo mov., tipo rival) del PLAN} ([yshift=2mm]an.west);
+\draw[arr] ([yshift=-2mm]an.west) -- node[lbl,below]{frase $\to\times$2/1/\textonehalf/0, verificado} ([yshift=-2mm]co.east);
+\draw[arr] ([yshift=2mm]an.east) -- node[lbl,above]{hecho + nota} ([yshift=2mm]ve.west);
+\draw[arr,draw=plum] ([yshift=-2mm]ve.west) -- node[lbl,below,text=plum]{rechazo + l\'inea citada\\$\circlearrowleft$ m\'ax.\ 2} ([yshift=-2mm]an.east);
+\draw[arr] ([xshift=-3mm]an.south) -- node[lbl,left]{consulta? + query} ([xshift=-3mm]kb.north);
+\draw[arr] ([xshift=3mm]kb.north) -- node[lbl,right]{secci\'on} ([xshift=3mm]an.south);
+\draw[arr] ([xshift=-3mm]co.south) -- node[lbl,left]{efectividades} ([xshift=-3mm]calc.north);
+\draw[arr] ([xshift=3mm]calc.north) -- node[lbl,right]{tabla ordenada} ([xshift=3mm]co.south);
+\draw[arr,draw=crimson,line width=0.7pt] (calc.west) -- node[lbl,above,text=crimson]{\textbf{PARADA}} (out.east);
+\node[font=\scriptsize,text=plum,above=0.3mm of ve.north] {l\'inea coincide $\to$ acepta, el hecho sigue};
+\node[font=\scriptsize,text=teal,above=0.3mm of an.north] {no consulta $\to$ responde de memoria};
+\node[draw=crimson,dashed,rounded corners=1pt,font=\scriptsize,text=crimson,right=5mm of kb,align=left,inner sep=2pt]
+  {Juez: tabla Gen I de \texttt{d2/ground\_truth.py}; solo eval\'ua,\\ning\'un agente la importa (test)};
+\end{tikzpicture}\par}
+{\centering\scriptsize Los tres agentes usan el \textbf{mismo} \texttt{\modelId} (\nParams\,B), greedy, \hw\ (\libs). Verde/lila = agentes (llamadas al modelo); \'ambar = herramientas.\par}
+
+\hspace{1cm}
+\begin{multicols}{2}
+% ============================================================ 1. CONTINUIDAD
+\heading{1. Continuidad con D1 y D2}
+\textbf{Misma tarea y criterio:} estado $\to$ \texttt{MOVE\_N}; correcto = m\'aximo de potencia$\times$precisi\'on$\times$STAB$\times$efectividad Gen I, sobre los \textbf{mismos \nAll\ estados} del D2 (semillas 20260830 y 20260927). \textbf{Mismo fallo, en su forma del D2:} la descomposici\'on de S2 quit\'o el sesgo de posici\'on del D1, pero el modelo \emph{no sabe} la tabla de tipos (``normal damage'' en el 87\,\% de los pares), y S2 no le ganaba a H, la calculadora que ignora los tipos. La D3 parte de S2: conserva la descomposici\'on y la calculadora, y reparte el trabajo en agentes.
+
+\textbf{Desviaci\'on declarada.} El D2 prohib\'ia que la soluci\'on viera la tabla. Ahora el Analista \emph{consulta} un texto con la tabla (\texttt{d3/kb/}), separado del juez (\texttt{d2/ground\_truth.py}) y verificado contra \'el en los 196 pares por un test. La D3 mide si el modelo sabe \emph{usar} la tabla (decidir qu\'e consultar, leerla, revisarse), no si la recuerda.
+
+% ============================================================ 2. AGENTES
+\heading{2. Agentes}
+{\centering\scriptsize
+\begin{tabular}{@{}L{0.17\linewidth}L{0.37\linewidth}L{0.40\linewidth}@{}}
+\toprule
+\textbf{Agente} & \textbf{Recibe $\to$ devuelve} & \textbf{Decide / se detiene}\\
+\midrule
+Coordinador & estado $\to$ \texttt{PLAN}; tabla $\to$ \texttt{MOVE\_N} & qu\'e movimientos se analizan; \textbf{para} al emitir \texttt{MOVE\_N}\\
+Analista & (atacante, defensor[, rechazo]) $\to$ frase del juego & si consulta y qu\'e; lee la nota l\'inea por l\'inea\\
+Verificador & hecho + nota $\to$ l\'inea A--D & acepta si coincide; si no, lo devuelve citando la l\'inea (m\'ax.\ 2)\\
+\bottomrule
+\end{tabular}\par}
+
+\textbf{Por qu\'e tres:} \emph{saber} el hecho (fallo del D2) es del Analista con la herramienta; \emph{comprobarlo} lo hace otro agente que no lo produjo; \emph{combinar} las 4 opciones (fallo del D1) queda en la calculadora, y el Coordinador decide sobre la tabla ya ordenada. Prompts versionados en \texttt{d3/prompts/} (sha256 en cada traza).
+
+\textbf{v1$\to$v2, antes de evaluar} (sondeos del modelo real sobre pares sueltos):\par
+\vspace{0.4mm}
+{\centering\scriptsize
+\begin{tabular}{@{}L{0.20\linewidth}L{0.37\linewidth}L{0.37\linewidth}@{}}
+\toprule
+\textbf{Paso} & \textbf{v1 y qu\'e pas\'o} & \textbf{v2}\\
+\midrule
+Analista: decidir & LOOKUP o ANSWER: nunca consultaba & ``\textquestiondown necesitas consultar?'' s\'i/no: 12/12 consulta\\
+Analista: leer & 1 de 4 frases leyendo la nota entera: 6/12 & s\'i/no por l\'inea, gana la m\'as probable: 13/16\\
+Verificador & ``\textquestiondown la nota lo respalda?'': no discriminaba & relee cada lista con 3 ejemplos: 11/16\\
+Coordinador & ``elige el mayor score'': fall\'o con la tabla verdadera & ``responde la etiqueta de la 1.ª fila''\\
+\bottomrule
+\end{tabular}\par}
+
+% ============================================================ 3. TECNICAS
+\heading{3. T\'ecnicas y su contribuci\'on (\nAll\ estados)}
+{\scriptsize
+\begin{tabular}{@{}llL{0.25\linewidth}rr@{}}
+\toprule
+\textbf{Agente} & \textbf{T\'ecnica} & \textbf{Contra} & \textbf{sin ella} & \textbf{compl.\ +/--}\\
+\midrule
+Analista & recuperaci\'on (ReAct+RAG) & no sabe la tabla & \accNoRagA\,\% & +\gainNoRag/--\dropNoRag\\
+Coordinador & descomposici\'on & combinar 4 opciones & \accNoDecA\,\% & +\gainNoDec/--\dropNoDec\\
+Coordinador & tabla ordenada & sesgo de posici\'on & \accNoRankA\,\% & +\gainNoRank/--\dropNoRank\\
+Verificador & verificaci\'on + bucle & leer mal la nota & \accNoVerA\,\% & +\gainNoVer/--\dropNoVer\\
+Verificador & few-shot (3 ejemplos) & revisar mal & \accNoFewA\,\% & +\gainNoFew/--\dropNoFew\\
+\bottomrule
+\end{tabular}\par}
+{\scriptsize ``Sin ella'': el sistema completo (\accFullA\,\%) con \emph{solo} esa t\'ecnica apagada. +/--: estados que el completo gana/pierde frente a la ablaci\'on (McNemar: recuperaci\'on $p{=}\pFullNoRag$, orden $p{=}\pFullNoRank$, few-shot $p{=}\pFullNoFew$). Todos usan rol en el \emph{system prompt} y salida restringida.}
+
+\textbf{El few-shot resta: contamina.} Los ejemplos del Verificador nombran tipos (``List: Water-type, Flying-type \ldots\ yes'') y el modelo copia esas respuestas: \nWrongWater\ de los \nWrongFull\ hechos err\'oneos tienen defensor Water (Normal$\to$Water ``super effective''). Sin few-shot hay \nWrongNoFew\ hechos err\'oneos; con \'el, el bucle corrige \loopFixed\ y da\~na \loopBroken.
+
+% ============================================================ RESULTADO
+\begin{keybox}{Resultado en breve}
+B0 \accBaseA\,\% $\to$ S2 \accStwoA\,\% $\to$ \textbf{agentes \accFullA\,\%}. Gana/pierde frente a B0 \winFull/\lossFull\ ($p{=}\pFull$), frente a S2 \gainStwo/\dropStwo\ ($p{=}\pFullStwo$) y, por primera vez, frente a H (ignora tipos, \accHeurA\,\%) \gainHeur/\dropHeur\ ($p{=}\pFullHeur$). Hechos de tipos correctos: \factsRightNoRag\,\% de memoria $\to$ \textbf{\factsRight\,\%} consultando.
+\end{keybox}
+
+% ============================================================ 4. RESULTADOS
+\heading{4. Evidencia: mismos estados, mismo criterio}
+{\centering\scriptsize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \textbf{50 orig.} & \textbf{50 nuevos} & \textbf{\nAll\ [IC 95\%]} & \textbf{llam.}\\
+\midrule
+B0 directo (baseline) & \accBaseO\,\% & \accBaseH\,\% & \accBaseA\,\% [\ciBaseA] & \callsBase\\
+H sin modelo & \accHeurO\,\% & \accHeurH\,\% & \accHeurA\,\% [\ciHeurA] & 0\\
+S2 soluci\'on D2 & \accStwoO\,\% & \accStwoH\,\% & \accStwoA\,\% [\ciStwoA] & \callsStwo\\
+\textbf{D3 completo} & \textbf{\accFullO\,\%} & \textbf{\accFullH\,\%} & \textbf{\accFullA\,\%} [\ciFullA] & \callsFull\\
+\midrule
+\quad sin recuperaci\'on & \accNoRagO\,\% & \accNoRagH\,\% & \accNoRagA\,\% [\ciNoRagA] & \callsNoRag\\
+\quad sin descomposici\'on & \accNoDecO\,\% & \accNoDecH\,\% & \accNoDecA\,\% [\ciNoDecA] & \callsNoDec\\
+\quad sin tabla ordenada & \accNoRankO\,\% & \accNoRankH\,\% & \accNoRankA\,\% [\ciNoRankA] & \callsNoRank\\
+\quad sin Verificador & \accNoVerO\,\% & \accNoVerH\,\% & \accNoVerA\,\% [\ciNoVerA] & \callsNoVer\\
+\quad sin few-shot & \accNoFewO\,\% & \accNoFewH\,\% & \accNoFewA\,\% [\ciNoFewA] & \callsNoFew\\
+\bottomrule
+\end{tabular}\par}
+
+% ============================================================ 5. AGENTES
+\heading{5. Qu\'e hizo cada agente (sistema completo, \nAll\ estados)}
+\begin{itemize}
+\item \textbf{Analista:} \nFacts\ hechos; consult\'o en el \lookupPct\,\% y eligi\'o la secci\'on correcta en el \rightSection\,\%. Hechos correctos: \textbf{\factsRight\,\%}; responder siempre $\times$1 dar\'ia \alwaysOne\,\%.
+\item \textbf{Verificador:} devolvi\'o \nRevised\ hechos al Analista y \nUnverified\ quedaron sin verificar. Frente a no tener Verificador, el bucle corrige \loopFixed\ hechos y da\~na \loopBroken.
+\item \textbf{Coordinador:} plan incompleto en \nPlanMissed\ estados; se apart\'o del m\'aximo de la calculadora en \nDeviated. Sin la tabla ordenada el sistema cae a \accNoRankA\,\%.
+\end{itemize}
+
+% ============================================================ 6. FALLO
+\begin{failbox}{6. Caso de fallo: estado \fcId\ (\fcDiff)}
+\footnotesize Rival Poison/Psychic. Eligi\'o \fcChosen\ (Psychic); el \'optimo era \fcRef\ (Blizzard): pierde el \fcRegret\,\% del score. \textbf{Por qu\'e} (\texttt{traces/demo\_holdout48\_full.json}): la nota dice ``B. Not very effective against: Psychic-type''. El Verificador, con ejemplos donde 2 de 3 respuestas son ``no'', le dio P(yes)$\,{=}\,$0{,}20, concluy\'o ``l\'inea D'' y devolvi\'o el hecho; el Analista acept\'o ``normal damage'' (Gen I: $\times$0{,}5). Psychic qued\'o con 180 en vez de 90 y super\'o a Blizzard (108). \textbf{El revisor introdujo el error.} Fallos del completo: \nFail\ (\failCauses).
+\end{failbox}
+
+% ============================================================ 6. LIMITES
+\heading{7. L\'imites}
+\begin{itemize}
+\item \textbf{Revisor y revisado son el mismo modelo de 1{,}5B:} no es un juez independiente; cuando el Verificador lee mal, el bucle propaga su error en vez de corregirlo (\S6).
+\item \textbf{El mejor medido no es el reportado:} sin few-shot se llega a \accNoFewA\,\%, pero esa cifra sale de los mismos estados que revelaron el problema, y las v2 se ajustaron con pares de ellos. Antes de adoptarla habr\'ia que confirmarla en estados nuevos.
+\item \textbf{El conocimiento viene de la herramienta:} si la nota estuviera mal, el sistema heredar\'ia el error.
+\item \textbf{Costo:} \callsFull\ llamadas por estado frente a 1 de B0 y \callsStwo\ de S2. Como en D1 y D2, solo da\~no inmediato: no usa HP, velocidad ni estados alterados.
+\end{itemize}
+\end{multicols}
+
+\hspace{1cm}
+\vspace{-1mm}
+{\centering\scriptsize\color{black!70}Reproducir: \texttt{python -m d3.evaluate} \textbullet\ \texttt{python -m d3.demo [--seed N | --replay orig:ID]} \textbullet\ trazas: \texttt{results\_d3/*/traces/}, \texttt{traces/} \textbullet\ cifras: \texttt{python report/fill\_d3.py}\par}
+\end{document}

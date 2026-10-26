@@ -25,7 +25,7 @@ _END_MARKERS = ("<|im_end|>", "<|eot_id|>", "<|end|>", "<|endoftext|>", "</s>")
 
 class HFModel:
     def __init__(self, model_id: str, device: Optional[str] = None, dtype: Optional[str] = None,
-                 system_prompt: str = SYSTEM_PROMPT, verbose: bool = True):
+                 system_prompt: str = SYSTEM_PROMPT, verbose: bool = True, prefix_cache: bool = False):
         import torch
         import transformers
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -33,6 +33,9 @@ class HFModel:
         self.torch = torch
         self.model_id = model_id
         self.system_prompt = system_prompt
+        # D3: choose() procesa el prompt UNA vez (cache KV) y puntua cada opcion sobre
+        # ese cache, en vez de un lote con el prompt repetido. Mismo calculo, menos computo.
+        self.prefix_cache = prefix_cache
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         if dtype is not None:
             dtype = getattr(torch, dtype)
@@ -70,8 +73,8 @@ class HFModel:
 
         self.revision = getattr(self.model.config, "_commit_hash", None)
         self.n_params = sum(p.numel() for p in self.model.parameters())
-        self._gen_cache: Dict[Tuple[str, int], str] = {}
-        self._choice_cache: Dict[Tuple[str, Tuple[str, ...]], Tuple[str, Dict[str, float]]] = {}
+        self._gen_cache: Dict[Tuple, str] = {}
+        self._choice_cache: Dict[Tuple, Tuple[str, Dict[str, float]]] = {}
         self.calls = {"generate": 0, "choose": 0, "cache_hits": 0}
 
         if verbose:
@@ -80,8 +83,8 @@ class HFModel:
                   f"{self.n_params / 1e9:.2f}B params | {self.device} ({gpu}) | {dtype}")
 
     # ------------------------------------------------------------ helpers --
-    def _messages(self, user: str) -> List[Dict[str, str]]:
-        return [{"role": "system", "content": self.system_prompt},
+    def _messages(self, user: str, system: Optional[str] = None) -> List[Dict[str, str]]:
+        return [{"role": "system", "content": system or self.system_prompt},
                 {"role": "user", "content": user}]
 
     def _render(self, messages, add_generation_prompt: bool) -> str:
@@ -92,13 +95,14 @@ class HFModel:
         return self.tokenizer(text, add_special_tokens=False)["input_ids"]
 
     # ----------------------------------------------------------- generate --
-    def generate(self, user: str, max_new_tokens: int = 32) -> str:
-        key = (user, max_new_tokens)
+    def generate(self, user: str, max_new_tokens: int = 32, system: Optional[str] = None) -> str:
+        # system: rol propio de un agente del D3 (None = system prompt del D1/D2).
+        key = (user, max_new_tokens) if system is None else (user, max_new_tokens, system)
         if key in self._gen_cache:
             self.calls["cache_hits"] += 1
             return self._gen_cache[key]
         torch = self.torch
-        text = self._render(self._messages(user), add_generation_prompt=True)
+        text = self._render(self._messages(user, system), add_generation_prompt=True)
         ids = torch.tensor([self._ids(text)], device=self.device)
         config = copy.deepcopy(self.gen_config)
         config.max_new_tokens = max_new_tokens
@@ -111,18 +115,19 @@ class HFModel:
         return answer
 
     # ------------------------------------------------------------- choose --
-    def choose(self, user: str, options: Sequence[str]) -> Tuple[str, Dict[str, float]]:
+    def choose(self, user: str, options: Sequence[str],
+               system: Optional[str] = None) -> Tuple[str, Dict[str, float]]:
         """
         Decodificacion restringida: puntua cada opcion como respuesta COMPLETA
         (sus tokens + el token de fin de turno) y devuelve la mas probable,
         junto con las probabilidades renormalizadas sobre las opciones.
         """
-        key = (user, tuple(options))
+        key = (user, tuple(options)) if system is None else (user, tuple(options), system)
         if key in self._choice_cache:
             self.calls["cache_hits"] += 1
             return self._choice_cache[key]
         torch = self.torch
-        messages = self._messages(user)
+        messages = self._messages(user, system)
         prefix_ids = self._ids(self._render(messages, add_generation_prompt=True))
 
         sequences, starts = [], []
@@ -140,6 +145,10 @@ class HFModel:
                     break
             sequences.append(full[:end])
             starts.append(k)
+
+        if self.prefix_cache:
+            scores = self._option_scores_cached(sequences, starts)
+            return self._finish_choice(key, options, scores)
 
         width = max(len(s) for s in sequences)
         batch = torch.full((len(sequences), width), self.pad_id, dtype=torch.long)
@@ -159,12 +168,35 @@ class HFModel:
             target = torch.tensor(seq[k:], device=logp.device)
             scores.append(logp.gather(1, target[:, None]).sum().item())
 
-        probs_t = torch.softmax(torch.tensor(scores), dim=0)
+        return self._finish_choice(key, options, scores)
+
+    def _finish_choice(self, key, options, scores) -> Tuple[str, Dict[str, float]]:
+        probs_t = self.torch.softmax(self.torch.tensor(scores), dim=0)
         probs = {opt: round(p.item(), 4) for opt, p in zip(options, probs_t)}
         best = options[max(range(len(options)), key=lambda i: scores[i])]
         self._choice_cache[key] = (best, probs)
         self.calls["choose"] += 1
         return best, probs
+
+    def _option_scores_cached(self, sequences, starts) -> List[float]:
+        """log P(tokens de la opcion | prompt), con el prompt procesado una sola vez."""
+        torch = self.torch
+        common = min(starts)                        # prefijo compartido por todas las opciones
+        prefix = torch.tensor([sequences[0][:common]], device=self.device)
+        with torch.inference_mode():
+            out = self.model(input_ids=prefix, use_cache=True)
+            scores = []
+            for seq, k in zip(sequences, starts):
+                cont = torch.tensor([seq[common:]], device=self.device)
+                step = self.model(input_ids=cont, past_key_values=copy.deepcopy(out.past_key_values),
+                                  use_cache=True)
+                # logits[j] predice el token common + j
+                logits = torch.cat([out.logits[0, -1:], step.logits[0, :-1]], dim=0).float()
+                logp = torch.log_softmax(logits, dim=-1)
+                target = torch.tensor(seq[common:], device=logp.device)
+                token_logp = logp.gather(1, target[:, None])[:, 0]
+                scores.append(token_logp[k - common:].sum().item())
+        return scores
 
     def describe(self) -> Dict:
         torch = self.torch

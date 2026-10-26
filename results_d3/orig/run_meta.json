@@ -1,0 +1,38 @@
+{
+  "sessions": [
+    {
+      "systems": [
+        "direct",
+        "decomposed_words",
+        "agents_full",
+        "agents_no_rag",
+        "agents_no_fewshot",
+        "agents_no_verifier",
+        "agents_no_decomposition",
+        "agents_no_ranking"
+      ],
+      "wall_clock_seconds": 662.8,
+      "finished_at": "2026-10-26 02:24:13",
+      "llm_calls": {
+        "generate": 342,
+        "choose": 1532,
+        "cache_hits": 8691
+      }
+    }
+  ],
+  "set": "orig",
+  "seed": 20260830,
+  "n_states": 50,
+  "model": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "revision": null,
+    "n_params": 1543714304,
+    "device": "cuda",
+    "gpu": "Tesla T4",
+    "dtype": "torch.float32",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.2",
+    "system_prompt": "You are an AI playing Pokemon Blue.",
+    "decoding": "greedy (do_sample=False), default generation config otherwise"
+  }
+}
