@@ -162,7 +162,7 @@ def failures(rows: List[Dict], cases: Dict, system: str = FULL) -> List[Dict]:
         if wrong:
             cause = "hecho de tipo incorrecto"
         elif r["interpreted_action"] != r["trace"].get("calculator_best"):
-            cause = "el Coordinador no eligio el maximo de la calculadora"
+            cause = "el Coordinador no eligió el máximo de la calculadora"
         else:
             cause = "plan incompleto"
         out.append({"case_id": r["case_id"], "difficulty": r["difficulty"], "chosen": r["interpreted_action"],

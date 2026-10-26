@@ -54,25 +54,25 @@ Hechos erroneos por tipo defensor: D3 Agentes (completo): {'Water': 22, 'Ghost':
 ## 4. Fallos del sistema completo (23)
 
 - holdout:48 (HARD): eligio MOVE_3, correcto MOVE_1, regret 0.1667 — hecho de tipo incorrecto: Psychic->Psychic: dijo 'normal damage', Gen I x0.5
-- holdout:14 (EASY): eligio MOVE_2, correcto MOVE_3, regret 0.5833 — el Coordinador no eligio el maximo de la calculadora
+- holdout:14 (EASY): eligio MOVE_2, correcto MOVE_3, regret 0.5833 — el Coordinador no eligió el máximo de la calculadora
 - holdout:27 (MEDIUM): eligio MOVE_3, correcto MOVE_2, regret 0.311 — plan incompleto
 - holdout:37 (HARD): eligio MOVE_1, correcto MOVE_4, regret 0.1467 — hecho de tipo incorrecto: Bug->Water: dijo 'no effect', Gen I x1; Ghost->Water: dijo 'not very effective', Gen I x1; Psychic->Water: dijo 'no effect', Gen I x1
 - holdout:35 (HARD): eligio MOVE_2, correcto MOVE_1, regret 0.0104 — hecho de tipo incorrecto: Water->Ground: dijo 'normal damage', Gen I x2
-- holdout:39 (HARD): eligio MOVE_4, correcto MOVE_2, regret 0.1667 — el Coordinador no eligio el maximo de la calculadora
+- holdout:39 (HARD): eligio MOVE_4, correcto MOVE_2, regret 0.1667 — el Coordinador no eligió el máximo de la calculadora
 - holdout:41 (HARD): eligio MOVE_3, correcto MOVE_1, regret 0.6111 — hecho de tipo incorrecto: Normal->Water: dijo 'super effective', Gen I x1; Normal->Water: dijo 'super effective', Gen I x1; Flying->Water: dijo 'no effect', Gen I x1
 - holdout:22 (MEDIUM): eligio MOVE_3, correcto MOVE_1, regret 0.2308 — hecho de tipo incorrecto: Water->Ground: dijo 'normal damage', Gen I x2
-- holdout:21 (MEDIUM): eligio MOVE_3, correcto MOVE_1, regret 0.6875 — el Coordinador no eligio el maximo de la calculadora
+- holdout:21 (MEDIUM): eligio MOVE_3, correcto MOVE_1, regret 0.6875 — el Coordinador no eligió el máximo de la calculadora
 - holdout:44 (HARD): eligio MOVE_1, correcto MOVE_4, regret 0.4902 — hecho de tipo incorrecto: Psychic->Psychic: dijo 'normal damage', Gen I x0.5
 - orig:41 (HARD): eligio MOVE_3, correcto MOVE_1, regret 0.0104 — hecho de tipo incorrecto: Normal->Ghost: dijo 'normal damage', Gen I x0; Normal->Ghost: dijo 'normal damage', Gen I x0
 - orig:27 (MEDIUM): eligio MOVE_1, correcto MOVE_3, regret 0.2344 — hecho de tipo incorrecto: Normal->Water: dijo 'super effective', Gen I x1; Normal->Water: dijo 'super effective', Gen I x1
 - orig:31 (MEDIUM): eligio MOVE_2, correcto MOVE_1, regret 0.2099 — hecho de tipo incorrecto: Rock->Water: dijo 'no effect', Gen I x1; Bug->Water: dijo 'no effect', Gen I x1
 - orig:50 (HARD): eligio MOVE_2, correcto MOVE_1, regret 0.5625 — hecho de tipo incorrecto: Water->Fire: dijo 'normal damage', Gen I x2
 - orig:8 (EASY): eligio MOVE_3, correcto MOVE_1, regret 0.5833 — hecho de tipo incorrecto: Normal->Water: dijo 'super effective', Gen I x1
-- orig:29 (MEDIUM): eligio MOVE_4, correcto MOVE_1, regret 0.35 — el Coordinador no eligio el maximo de la calculadora
+- orig:29 (MEDIUM): eligio MOVE_4, correcto MOVE_1, regret 0.35 — el Coordinador no eligió el máximo de la calculadora
 - orig:47 (HARD): eligio MOVE_4, correcto MOVE_3, regret 1.0 — hecho de tipo incorrecto: Normal->Ghost: dijo 'normal damage', Gen I x0; Fighting->Ghost: dijo 'normal damage', Gen I x0
 - orig:43 (HARD): eligio MOVE_3, correcto MOVE_4, regret 0.537 — hecho de tipo incorrecto: Psychic->Psychic: dijo 'normal damage', Gen I x0.5
 - orig:48 (HARD): eligio MOVE_3, correcto MOVE_4, regret 0.0519 — hecho de tipo incorrecto: Ghost->Water: dijo 'not very effective', Gen I x1; Psychic->Water: dijo 'no effect', Gen I x1; Rock->Water: dijo 'no effect', Gen I x1
 - orig:18 (MEDIUM): eligio MOVE_4, correcto MOVE_1, regret 0.2 — hecho de tipo incorrecto: Normal->Water: dijo 'super effective', Gen I x1
 - orig:36 (HARD): eligio MOVE_2, correcto MOVE_1, regret 0.15 — plan incompleto
 - orig:11 (EASY): eligio MOVE_2, correcto MOVE_3, regret 1.0 — hecho de tipo incorrecto: Normal->Ghost: dijo 'normal damage', Gen I x0; Normal->Ghost: dijo 'normal damage', Gen I x0
-- orig:10 (EASY): eligio MOVE_1, correcto MOVE_2, regret 0.7173 — el Coordinador no eligio el maximo de la calculadora
+- orig:10 (EASY): eligio MOVE_1, correcto MOVE_2, regret 0.7173 — el Coordinador no eligió el máximo de la calculadora

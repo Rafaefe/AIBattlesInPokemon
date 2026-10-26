@@ -1512,7 +1512,7 @@
       "chosen": "MOVE_2",
       "reference": "MOVE_3",
       "regret": 0.5833,
-      "cause": "el Coordinador no eligio el maximo de la calculadora",
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
       "wrong_facts": []
     },
     {
@@ -1554,7 +1554,7 @@
       "chosen": "MOVE_4",
       "reference": "MOVE_2",
       "regret": 0.1667,
-      "cause": "el Coordinador no eligio el maximo de la calculadora",
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
       "wrong_facts": []
     },
     {
@@ -1587,7 +1587,7 @@
       "chosen": "MOVE_3",
       "reference": "MOVE_1",
       "regret": 0.6875,
-      "cause": "el Coordinador no eligio el maximo de la calculadora",
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
       "wrong_facts": []
     },
     {
@@ -1665,7 +1665,7 @@
       "chosen": "MOVE_4",
       "reference": "MOVE_1",
       "regret": 0.35,
-      "cause": "el Coordinador no eligio el maximo de la calculadora",
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
       "wrong_facts": []
     },
     {
@@ -1742,7 +1742,7 @@
       "chosen": "MOVE_1",
       "reference": "MOVE_2",
       "regret": 0.7173,
-      "cause": "el Coordinador no eligio el maximo de la calculadora",
+      "cause": "el Coordinador no eligió el máximo de la calculadora",
       "wrong_facts": []
     }
   ]
