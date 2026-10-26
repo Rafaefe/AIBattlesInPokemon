@@ -122,6 +122,17 @@ def agent_diagnostics(rows: List[Dict], cases: Dict) -> Dict[str, Dict]:
     return out
 
 
+def wrong_by_defender(rows: List[Dict], system: str = FULL) -> Dict[str, int]:
+    """Hechos erroneos por tipo DEFENSOR: deja ver si un tipo concreto concentra los errores."""
+    c = Counter()
+    for r in rows:
+        if r["strategy"] == system:
+            for f in r["trace"].get("facts", []):
+                if f["multiplier"] != single_effectiveness(f["attack"], f["defend"]):
+                    c[f["defend"]] += 1
+    return dict(c.most_common())
+
+
 def revision_effect(rows: List[Dict]) -> Optional[Dict]:
     """Que hizo el bucle Verificador -> Analista: hechos corregidos vs danados."""
     rs = [r for r in rows if r["strategy"] == FULL]
@@ -180,6 +191,7 @@ def build_report(results_dir="results_d3") -> str:
         "comparisons": {k: comparisons(v["rows"]) for k, v in groups.items()},
         "agents": agent_diagnostics(allp["rows"], allp["cases"]),
         "revision_effect": revision_effect(allp["rows"]),
+        "wrong_by_defender": {s: wrong_by_defender(allp["rows"], s) for s in ORDER if s.startswith("agents_")},
         "failures_full": failures(allp["rows"], allp["cases"]),
     }
     out = Path(results_dir)
@@ -217,6 +229,8 @@ def build_report(results_dir="results_d3") -> str:
         e = summary["revision_effect"]
         lines += ["", f"Bucle Verificador->Analista (completo vs sin Verificador): corrige {e['facts_fixed_by_loop']} hechos, "
                       f"daña {e['facts_broken_by_loop']}."]
+    lines += ["", "Hechos erroneos por tipo defensor: " + "; ".join(
+        f"{LABELS.get(s, s)}: {w or 'ninguno'}" for s, w in summary["wrong_by_defender"].items() if s in summary["agents"])]
     lines += ["", f"## 4. Fallos del sistema completo ({len(summary['failures_full'])})", ""]
     for f in summary["failures_full"]:
         lines.append(f"- {f['case_id']} ({f['difficulty']}): eligio {f['chosen']}, correcto {f['reference']}, "

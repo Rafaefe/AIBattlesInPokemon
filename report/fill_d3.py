@@ -80,6 +80,10 @@ def macros(summary: dict) -> dict:
         m[f"factsRight{KEYS[s]}"] = num(summary["agents"].get(s, {}).get("facts_right_pct"))
     eff = summary.get("revision_effect") or {}
     m["loopFixed"], m["loopBroken"] = str(eff.get("facts_fixed_by_loop", "--")), str(eff.get("facts_broken_by_loop", "--"))
+    wbd = summary.get("wrong_by_defender", {}).get("agents_full", {})
+    m["nWrongFull"] = str(sum(wbd.values()))
+    m["nWrongWater"] = str(wbd.get("Water", 0))
+    m["nWrongNoFew"] = str(sum(summary.get("wrong_by_defender", {}).get("agents_no_fewshot", {}).values()))
     fails = summary.get("failures_full", [])
     m["nFail"] = str(len(fails))
     causes = {}
@@ -95,7 +99,8 @@ def macros(summary: dict) -> dict:
         m.update({k: "--" for k in ("fcId", "fcDiff", "fcChosen", "fcRef", "fcRegret", "fcCause", "fcFacts")})
     model = summary.get("model") or {}
     m["modelId"] = esc(model.get("model_id", "Qwen/Qwen2.5-1.5B-Instruct"))
-    m["modelRev"] = esc(str(model.get("revision", ""))[:10])
+    # transformers >= 5.20 ya no expone el commit del snapshot (revision = None en run_meta)
+    m["modelRev"] = esc(str(model["revision"])[:10]) if model.get("revision") else "n/d"
     m["nParams"] = num((model.get("n_params") or 1.54e9) / 1e9, 2)
     m["hw"] = esc(f"{model.get('gpu') or model.get('device', '')}, {str(model.get('dtype', '')).replace('torch.', '')}")
     m["libs"] = esc(f"torch {model.get('torch', '?')}, transformers {model.get('transformers', '?')}")

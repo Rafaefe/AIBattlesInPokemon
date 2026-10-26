@@ -141,13 +141,15 @@ Coordinador & descomposici\'on & combinar 4 opciones (D1) & \accNoDecA\,\% & +\g
 Coordinador & tabla ordenada & sesgo de posici\'on (D1) & \accNoRankA\,\% & +\gainNoRank/--\dropNoRank\\
 \bottomrule
 \end{tabular}}
-{\scriptsize Todas: rol en el \emph{system prompt} y salida restringida (decodificaci\'on sobre las opciones v\'alidas). ``Sin ella'' = sistema completo con \emph{solo} esa t\'ecnica apagada, sobre los \nAll\ estados. McNemar completo vs sin: recuperaci\'on $p=\pFullNoRag$, verificador $p=\pFullNoVer$, descomposici\'on $p=\pFullNoDec$, orden $p=\pFullNoRank$.}
+{\scriptsize Todas: rol en el \emph{system prompt} y salida restringida (decodificaci\'on sobre las opciones v\'alidas). ``Sin ella'' = sistema completo con \emph{solo} esa t\'ecnica apagada, sobre los \nAll\ estados. McNemar completo vs sin: recuperaci\'on $p=\pFullNoRag$, verificador $p=\pFullNoVer$, descomposici\'on $p=\pFullNoDec$, orden $p=\pFullNoRank$, few-shot $p=\pFullNoFew$.}
+
+\textbf{Contribuci\'on negativa: el few-shot contamina.} Recuperaci\'on, descomposici\'on y tabla ordenada aportan. El few-shot del Verificador \emph{resta}: sin \'el el sistema acierta \accNoFewA\,\% y no gana ning\'un estado al completo. Sus ejemplos nombran tipos (``List: Water-type, Flying-type \ldots\ yes'', ``\ldots\ Ground-type? no''), y el modelo copia esas respuestas cuando aparece el mismo tipo: \nWrongWater\ de los \nWrongFull\ hechos err\'oneos del sistema completo tienen defensor Water (Normal$\to$Water ``super effective''). Sin few-shot hay \nWrongNoFew\ hechos err\'oneos. El Verificador sin ejemplos lee bien; con ellos, el bucle corrige \loopFixed\ hechos y da\~na \loopBroken.
 \end{minipage}\hfill
 \begin{minipage}[t]{0.488\linewidth}
 \setlength{\parskip}{0.5mm}
 \vspace{1.0mm}
 \begin{keybox}{Resultado en breve}
-\footnotesize Sobre los \nAll\ estados, con el mismo criterio: B0 \accBaseA\,\% $\to$ S2 \accStwoA\,\% $\to$ \textbf{agentes \accFullA\,\%}. Frente a B0 el sistema gana en \winFull\ estados y pierde en \lossFull\ ($p=\pFull$). Los hechos de tipos correctos pasan de \factsRightNoRag\,\% (de memoria) a \textbf{\factsRight\,\%} (consultando).
+\footnotesize Sobre los \nAll\ estados, con el mismo criterio: B0 \accBaseA\,\% $\to$ S2 \accStwoA\,\% $\to$ \textbf{agentes \accFullA\,\%}. Frente a B0 gana \winFull/pierde \lossFull\ ($p=\pFull$); frente a S2, \gainStwo/\dropStwo\ ($p=\pFullStwo$). Por primera vez supera a H, que ignora los tipos (\accHeurA\,\%): \gainHeur/\dropHeur, $p=\pFullHeur$. Los hechos de tipos correctos pasan de \factsRightNoRag\,\% (de memoria) a \textbf{\factsRight\,\%} (consultando). Las ablaciones muestran que la recuperaci\'on y la descomposici\'on son las que sostienen el resultado, y que el few-shot del Verificador \emph{lo empeora} (\S3).
 \end{keybox}
 % ============================================================ 4. RESULTADOS
 \heading{4. Evidencia: mismos estados, mismo criterio}
@@ -174,20 +176,22 @@ S2 soluci\'on del D2 & \accStwoO\,\% & \accStwoH\,\% & \accStwoA\,\% [\ciStwoA] 
 \heading{5. Qu\'e hace cada agente (\nAll\ estados, sistema completo)}
 \begin{itemize}
 \item \textbf{Analista:} \nFacts\ hechos; consult\'o en el \lookupPct\,\%, eligi\'o la secci\'on correcta en el \rightSection\,\%; hechos correctos \textbf{\factsRight\,\%} (responder siempre $\times$1: \alwaysOne\,\%).
-\item \textbf{Verificador:} devolvi\'o \nRevised\ hechos al Analista; \nUnverified\ quedaron sin verificar. Frente al sistema sin Verificador, el bucle corrige \loopFixed\ hechos y da\~na \loopBroken.
-\item \textbf{Coordinador:} plan incompleto en \nPlanMissed\ estados; eligi\'o algo distinto del m\'aximo de la calculadora en \nDeviated.
+\item \textbf{Verificador:} devolvi\'o \nRevised\ hechos al Analista y \nUnverified\ quedaron sin verificar. Frente al sistema sin Verificador, el bucle corrige \loopFixed\ hechos y da\~na \loopBroken: con few-shot, casi lo mismo que arregla.
+\item \textbf{Coordinador:} su plan omiti\'o alg\'un movimiento en \nPlanMissed\ estados y eligi\'o algo distinto del m\'aximo de la calculadora en \nDeviated. La tabla ordenada lo contiene: sin ella se desv\'ia en m\'as estados y el sistema cae a \accNoRankA\,\%.
 \end{itemize}
 
 % ============================================================ 6. FALLO
 \vspace{0.4mm}
 \begin{failbox}{6. Caso de fallo: estado \fcId\ (\fcDiff)}
-\footnotesize El sistema eligi\'o \fcChosen; el \'optimo era \fcRef\ (pierde el \fcRegret\,\% del mejor score). Causa: \fcCause. Hechos err\'oneos: \fcFacts. Traza completa en \texttt{traces/}. Fallos del sistema completo: \nFail\ (\failCauses).
+\footnotesize Rival Poison/Psychic; movimientos Ice, Flying, Psychic y Fighting. El sistema eligi\'o \fcChosen\ (Psychic); el \'optimo era \fcRef\ (Blizzard), y pierde el \fcRegret\,\% del mejor score. Hecho err\'oneo: \fcFacts. \textbf{Por qu\'e} (traza \texttt{traces/demo\_holdout48\_full.json}): la nota de Psychic dice ``B. Not very effective against: Psychic-type''. El Verificador, con ejemplos donde 2 de 3 respuestas son ``no'', le dio P(yes)$\,{=}\,$0{,}20 a esa lista de un solo tipo, concluy\'o ``l\'inea D'' y devolvi\'o el hecho con ese motivo. El Analista lo acept\'o: Psychic qued\'o con score 180 en vez de 90 y le gan\'o a Blizzard (108). \textbf{El revisor introdujo el error}, el mismo mecanismo que mide la ablaci\'on del few-shot. Fallos del sistema completo: \nFail\ (\failCauses).
 \end{failbox}
 
 % ============================================================ 7. LIMITES
 \heading{7. L\'imites}
 \begin{itemize}
-\item \textbf{El conocimiento viene de la herramienta:} si la nota estuviera mal, el sistema heredar\'ia el error, y el Verificador solo revisa contra esa misma nota.
+\item \textbf{Revisor y revisado son el mismo modelo:} un Verificador de 1{,}5B no es un juez independiente. Cuando lee mal, el bucle propaga su error en vez de corregirlo (\S6).
+\item \textbf{El sistema reportado no es el mejor medido:} sin few-shot se llega a \accNoFewA\,\%, pero esa cifra sale de los mismos \nAll\ estados que revelaron el problema. Antes de adoptarla habr\'ia que confirmarla en estados nuevos. Los prompts v2 tambi\'en se ajustaron con pares de estos estados.
+\item \textbf{El conocimiento viene de la herramienta:} si la nota estuviera mal, el sistema heredar\'ia el error.
 \item \textbf{Costo:} \callsFull\ llamadas por estado frente a 1 de B0 y \callsStwo\ de S2.
 \item Como en D1 y D2, solo da\~no inmediato: no usa HP, velocidad ni estados alterados.
 \end{itemize}

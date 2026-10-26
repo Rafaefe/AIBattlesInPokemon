@@ -82,6 +82,41 @@ real (CPU, bfloat16) sobre pares sueltos, antes de correr la evaluación:
 Los pares de esos sondeos salen de los mismos estados de evaluación: es un ajuste sobre datos de
 prueba y se declara como tal. El detalle de cada cambio está en la cabecera de su archivo v2.
 
+### Resultados (Colab, Tesla T4, float32; `results_d3/summary.md`)
+
+| Sistema | 50 originales | 50 nuevos | 100 estados [IC 95 %] | llamadas/estado |
+|---|---:|---:|---:|---:|
+| B0 prompt directo (baseline) | 28 % | 40 % | 34 % [26–44] | 1 |
+| H sin modelo (ignora tipos) | 54 % | 76 % | 65 % [55–74] | 0 |
+| S2 solución del D2 | 48 % | 58 % | 53 % [43–62] | 5,1 |
+| **D3 agentes (completo)** | **74 %** | **80 %** | **77 % [68–84]** | 52,8 |
+| sin recuperación | 34 % | 48 % | 41 % [32–51] | 16,9 |
+| sin few-shot (Verificador) | 86 % | 88 % | 87 % [79–92] | 49,4 |
+| sin Verificador | 86 % | 84 % | 85 % [77–91] | 31,6 |
+| sin descomposición | 18 % | 38 % | 28 % [20–38] | 1 |
+| sin tabla ordenada | 54 % | 70 % | 62 % [52–71] | 52,8 |
+
+- **El sistema completo mejora:** frente a B0 gana 47 estados y pierde 4 (McNemar p = 2·10⁻¹⁰);
+  frente a S2, 35/11 (p = 0,0005); frente a H, 25/13 (p = 0,073), la primera vez que se supera a
+  la heurística que ignora los tipos. Los hechos de tipos correctos pasan de 31,9 % (de memoria) a 90,6 %.
+- **Las técnicas que aportan:** recuperación (completo vs sin ella: 41/5, p = 4·10⁻⁸),
+  descomposición (51/2) y tabla ordenada (19/4, p = 0,003).
+- **El few-shot del Verificador resta.** Sin él el sistema acierta 87 % (el completo gana 0 estados y
+  pierde 10, p = 0,002). Sus ejemplos nombran tipos ("List: Water-type, Flying-type … yes",
+  "… Ground-type? no") y el modelo copia esas respuestas: 22 de los 47 hechos erróneos del sistema
+  completo tienen defensor Water (p. ej. Normal→Water "super effective"). Sin few-shot hay 0 hechos
+  erróneos. Con few-shot, el bucle de revisión corrige 52 hechos y daña 46.
+- **Sistema reportado.** Es el completo (77 %), tal como se diseñó antes de evaluar. Las cifras sin
+  few-shot salen de los mismos 100 estados que revelaron el problema; antes de adoptarlas habría que
+  confirmarlas en estados nuevos.
+- **Caso de fallo:** `holdout:48`, traza en `traces/demo_holdout48_full.json`. El Verificador le dio
+  P(yes) = 0,20 a la lista "Psychic-type" de la línea B y devolvió el hecho Psychic→Psychic como
+  "normal damage" (en Gen I es ×0,5). El Analista lo aceptó y el sistema eligió Psychic en vez de
+  Blizzard: el revisor introdujo el error.
+- **Trazas del video:** `traces/demo_seed264534_full.json` y `traces/demo_seed813158_full.json`
+  (estados nuevos, semilla del reloj) y `traces/demo_holdout48_full.json` (fallo). Las trazas de
+  todos los estados de la evaluación están en `results_d3/<conjunto>/traces/`.
+
 ### Reproducir lo que muestra el video
 
 ```bash

@@ -1,0 +1,1009 @@
+{
+  "state": "seed264534",
+  "config": "full",
+  "case": {
+    "case_id": 0,
+    "player_hp_percent": 94,
+    "player_speed": 77,
+    "player_types": [
+      "Flying"
+    ],
+    "enemy_hp_percent": 52,
+    "enemy_speed": 40,
+    "enemy_types": [
+      "Fighting"
+    ],
+    "moves": [
+      {
+        "name": "Psybeam",
+        "type": "Psychic",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 13
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 22
+      },
+      {
+        "name": "Strength",
+        "type": "Normal",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 10
+      },
+      {
+        "name": "BubbleBeam",
+        "type": "Water",
+        "power": 65,
+        "accuracy": 100,
+        "pp": 18
+      }
+    ]
+  },
+  "reference_action": "MOVE_1",
+  "action": "MOVE_1",
+  "baseline_action": "MOVE_1",
+  "s2_action": "MOVE_2",
+  "facts": [
+    {
+      "attack": "Psychic",
+      "defend": "Fighting",
+      "decision": "LOOKUP",
+      "query": "type_lookup Psychic-type vs Fighting-type",
+      "passage_title": "Psychic-type attacks",
+      "passage": "A. Super effective against: Fighting-type, Poison-type.\nB. Not very effective against: Psychic-type.\nC. No effect on: none.\nD. Normal damage against every other type.",
+      "line": "A",
+      "line_probs": {
+        "A": 0.6246,
+        "B": 0.1253,
+        "C": 0.1105,
+        "D": 0.3594
+      },
+      "answer": "super effective",
+      "multiplier": 2.0,
+      "move": "MOVE_1",
+      "revisions": 0,
+      "verified": true
+    },
+    {
+      "attack": "Ice",
+      "defend": "Fighting",
+      "decision": "LOOKUP",
+      "query": "type_lookup Ice-type vs Fighting-type",
+      "passage_title": "Ice-type attacks",
+      "passage": "A. Super effective against: Grass-type, Ground-type, Flying-type.\nB. Not very effective against: Water-type, Ice-type.\nC. No effect on: none.\nD. Normal damage against every other type.",
+      "line": "D",
+      "line_probs": {
+        "A": 0.0987,
+        "B": 0.1092,
+        "C": 0.1105,
+        "D": 0.3594
+      },
+      "answer": "normal damage",
+      "multiplier": 1.0,
+      "move": "MOVE_2",
+      "revisions": 0,
+      "verified": true
+    },
+    {
+      "attack": "Normal",
+      "defend": "Fighting",
+      "decision": "LOOKUP",
+      "query": "type_lookup Normal-Fighting",
+      "passage_title": "Normal-type attacks",
+      "passage": "A. Super effective against: none.\nB. Not very effective against: Rock-type.\nC. No effect on: Ghost-type.\nD. Normal damage against every other type.",
+      "line": "D",
+      "line_probs": {
+        "A": 0.0689,
+        "B": 0.2858,
+        "C": 0.0756,
+        "D": 0.3594
+      },
+      "answer": "normal damage",
+      "multiplier": 1.0,
+      "move": "MOVE_3",
+      "revisions": 0,
+      "verified": true
+    },
+    {
+      "attack": "Water",
+      "defend": "Fighting",
+      "decision": "LOOKUP",
+      "query": "type_lookup Water-type vs Fighting-type",
+      "passage_title": "Water-type attacks",
+      "passage": "A. Super effective against: Fire-type, Ground-type, Rock-type.\nB. Not very effective against: Water-type, Grass-type.\nC. No effect on: none.\nD. Normal damage against every other type.",
+      "line": "D",
+      "line_probs": {
+        "A": 0.1591,
+        "B": 0.1023,
+        "C": 0.1105,
+        "D": 0.3594
+      },
+      "answer": "normal damage",
+      "multiplier": 1.0,
+      "move": "MOVE_4",
+      "revisions": 0,
+      "verified": true
+    }
+  ],
+  "prompts": {
+    "coordinator": {
+      "file": "d3/prompts/coordinator.v2.md",
+      "version": "v2",
+      "sha256": "aa1ba117fd58"
+    },
+    "analyst": {
+      "file": "d3/prompts/analyst.v2.md",
+      "version": "v2",
+      "sha256": "67531489fa70"
+    },
+    "verifier": {
+      "file": "d3/prompts/verifier.v2.md",
+      "version": "v2",
+      "sha256": "6f31349eb680"
+    }
+  },
+  "messages": [
+    {
+      "step": 1,
+      "from": "environment",
+      "to": "coordinator",
+      "kind": "handoff",
+      "content": {
+        "state": "PLAYER\nHP: 94%\nTypes: Flying\nSpeed: 77\n\nOPPONENT\nHP: 52%\nTypes: Fighting\nSpeed: 40\n\nAVAILABLE MOVES\nMOVE_1: Psybeam | Type=Psychic | Power=65 | Accuracy=100% | PP=13\nMOVE_2: Ice Beam | Type=Ice | Power=95 | Accuracy=100% | PP=22\nMOVE_3: Strength | Type=Normal | Power=80 | Accuracy=100% | PP=10\nMOVE_4: BubbleBeam | Type=Water | Power=65 | Accuracy=100% | PP=18"
+      }
+    },
+    {
+      "step": 2,
+      "from": "coordinator",
+      "to": "coordinator",
+      "kind": "llm",
+      "content": {
+        "template": "plan",
+        "output": "PLAN: ICE BEAM, STRENGTH, BUBBLEBEAM",
+        "prompt": "PLAYER\nHP: 94%\nTypes: Flying\nSpeed: 77\n\nOPPONENT\nHP: 52%\nTypes: Fighting\nSpeed: 40\n\nAVAILABLE MOVES\nMOVE_1: Psybeam | Type=Psychic | Power=65 | Accuracy=100% | PP=13\nMOVE_2: Ice Beam | Type=Ice | Power=95 | Accuracy=100% | PP=22\nMOVE_3: Strength | Type=Normal | Power=80 | Accuracy=100% | PP=10\nMOVE_4: BubbleBeam | Type=Water | Power=65 | Accuracy=100% | PP=18\n\nA move with PP=0 cannot be used. List every move that can be used; each one will be sent to the Type Analyst.\nAnswer in one line exactly like: PLAN: MOVE_1, MOVE_2, MOVE_3, MOVE_4"
+      }
+    },
+    {
+      "step": 3,
+      "from": "coordinator",
+      "to": "coordinator",
+      "kind": "note",
+      "content": "plan unreadable -> analyze all moves"
+    },
+    {
+      "step": 4,
+      "from": "coordinator",
+      "to": "analyst",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_1",
+        "attack": "Psychic",
+        "defend": "Fighting"
+      }
+    },
+    {
+      "step": 5,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "decide",
+        "output": "yes",
+        "probs": {
+          "yes": 0.9567,
+          "no": 0.0433
+        },
+        "prompt": "Question: how effective is a Psychic-type attack against a Fighting-type Pokemon?\n\nBefore answering, do you need to check the type chart notes with type_lookup? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 6,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "query",
+        "output": "type_lookup Psychic-type vs Fighting-type",
+        "prompt": "Question: how effective is a Psychic-type attack against a Fighting-type Pokemon?\nEach section of the type chart notes describes the attacks of ONE attacking type.\nWrite the search query for type_lookup: the name of the section you need.\nQUERY:"
+      }
+    },
+    {
+      "step": 7,
+      "from": "analyst",
+      "to": "type_lookup",
+      "kind": "tool_call",
+      "content": {
+        "query": "type_lookup Psychic-type vs Fighting-type"
+      }
+    },
+    {
+      "step": 8,
+      "from": "type_lookup",
+      "to": "analyst",
+      "kind": "tool_result",
+      "content": {
+        "title": "Psychic-type attacks",
+        "text": "A. Super effective against: Fighting-type, Poison-type.\nB. Not very effective against: Psychic-type.\nC. No effect on: none.\nD. Normal damage against every other type."
+      }
+    },
+    {
+      "step": 9,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "yes",
+        "probs": {
+          "yes": 0.6246,
+          "no": 0.3754
+        },
+        "prompt": "Line from the type chart notes:\n\"A. Super effective against: Fighting-type, Poison-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 10,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1253,
+          "no": 0.8747
+        },
+        "prompt": "Line from the type chart notes:\n\"B. Not very effective against: Psychic-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 11,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1105,
+          "no": 0.8895
+        },
+        "prompt": "Line from the type chart notes:\n\"C. No effect on: none.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 12,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.3594,
+          "no": 0.6406
+        },
+        "prompt": "Line from the type chart notes:\n\"D. Normal damage against every other type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 13,
+      "from": "analyst",
+      "to": "verifier",
+      "kind": "handoff",
+      "content": {
+        "attack": "Psychic",
+        "defend": "Fighting",
+        "answer": "super effective",
+        "passage_title": "Psychic-type attacks"
+      }
+    },
+    {
+      "step": 14,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "yes",
+        "probs": {
+          "yes": 0.7292,
+          "no": 0.2708
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Fighting-type, Poison-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 15,
+      "from": "verifier",
+      "to": "analyst",
+      "kind": "verdict",
+      "content": {
+        "accepted": true,
+        "line": "A"
+      }
+    },
+    {
+      "step": 16,
+      "from": "analyst",
+      "to": "coordinator",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_1",
+        "attack": "Psychic",
+        "defend": "Fighting",
+        "answer": "super effective",
+        "multiplier": 2.0,
+        "verified": true,
+        "revisions": 0
+      }
+    },
+    {
+      "step": 17,
+      "from": "coordinator",
+      "to": "analyst",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_2",
+        "attack": "Ice",
+        "defend": "Fighting"
+      }
+    },
+    {
+      "step": 18,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "decide",
+        "output": "yes",
+        "probs": {
+          "yes": 0.9701,
+          "no": 0.0299
+        },
+        "prompt": "Question: how effective is a Ice-type attack against a Fighting-type Pokemon?\n\nBefore answering, do you need to check the type chart notes with type_lookup? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 19,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "query",
+        "output": "type_lookup Ice-type vs Fighting-type",
+        "prompt": "Question: how effective is a Ice-type attack against a Fighting-type Pokemon?\nEach section of the type chart notes describes the attacks of ONE attacking type.\nWrite the search query for type_lookup: the name of the section you need.\nQUERY:"
+      }
+    },
+    {
+      "step": 20,
+      "from": "analyst",
+      "to": "type_lookup",
+      "kind": "tool_call",
+      "content": {
+        "query": "type_lookup Ice-type vs Fighting-type"
+      }
+    },
+    {
+      "step": 21,
+      "from": "type_lookup",
+      "to": "analyst",
+      "kind": "tool_result",
+      "content": {
+        "title": "Ice-type attacks",
+        "text": "A. Super effective against: Grass-type, Ground-type, Flying-type.\nB. Not very effective against: Water-type, Ice-type.\nC. No effect on: none.\nD. Normal damage against every other type."
+      }
+    },
+    {
+      "step": 22,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.0987,
+          "no": 0.9013
+        },
+        "prompt": "Line from the type chart notes:\n\"A. Super effective against: Grass-type, Ground-type, Flying-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 23,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1092,
+          "no": 0.8908
+        },
+        "prompt": "Line from the type chart notes:\n\"B. Not very effective against: Water-type, Ice-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 24,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1105,
+          "no": 0.8895
+        },
+        "prompt": "Line from the type chart notes:\n\"C. No effect on: none.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 25,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.3594,
+          "no": 0.6406
+        },
+        "prompt": "Line from the type chart notes:\n\"D. Normal damage against every other type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 26,
+      "from": "analyst",
+      "to": "verifier",
+      "kind": "handoff",
+      "content": {
+        "attack": "Ice",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "passage_title": "Ice-type attacks"
+      }
+    },
+    {
+      "step": 27,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0299,
+          "no": 0.9701
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Grass-type, Ground-type, Flying-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 28,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0545,
+          "no": 0.9455
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Water-type, Ice-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 29,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0284,
+          "no": 0.9716
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: none.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 30,
+      "from": "verifier",
+      "to": "analyst",
+      "kind": "verdict",
+      "content": {
+        "accepted": true,
+        "line": "D"
+      }
+    },
+    {
+      "step": 31,
+      "from": "analyst",
+      "to": "coordinator",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_2",
+        "attack": "Ice",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "multiplier": 1.0,
+        "verified": true,
+        "revisions": 0
+      }
+    },
+    {
+      "step": 32,
+      "from": "coordinator",
+      "to": "analyst",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_3",
+        "attack": "Normal",
+        "defend": "Fighting"
+      }
+    },
+    {
+      "step": 33,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "decide",
+        "output": "yes",
+        "probs": {
+          "yes": 0.9491,
+          "no": 0.0509
+        },
+        "prompt": "Question: how effective is a Normal-type attack against a Fighting-type Pokemon?\n\nBefore answering, do you need to check the type chart notes with type_lookup? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 34,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "query",
+        "output": "type_lookup Normal-Fighting",
+        "prompt": "Question: how effective is a Normal-type attack against a Fighting-type Pokemon?\nEach section of the type chart notes describes the attacks of ONE attacking type.\nWrite the search query for type_lookup: the name of the section you need.\nQUERY:"
+      }
+    },
+    {
+      "step": 35,
+      "from": "analyst",
+      "to": "type_lookup",
+      "kind": "tool_call",
+      "content": {
+        "query": "type_lookup Normal-Fighting"
+      }
+    },
+    {
+      "step": 36,
+      "from": "type_lookup",
+      "to": "analyst",
+      "kind": "tool_result",
+      "content": {
+        "title": "Normal-type attacks",
+        "text": "A. Super effective against: none.\nB. Not very effective against: Rock-type.\nC. No effect on: Ghost-type.\nD. Normal damage against every other type."
+      }
+    },
+    {
+      "step": 37,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.0689,
+          "no": 0.9311
+        },
+        "prompt": "Line from the type chart notes:\n\"A. Super effective against: none.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 38,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.2858,
+          "no": 0.7142
+        },
+        "prompt": "Line from the type chart notes:\n\"B. Not very effective against: Rock-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 39,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.0756,
+          "no": 0.9244
+        },
+        "prompt": "Line from the type chart notes:\n\"C. No effect on: Ghost-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 40,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.3594,
+          "no": 0.6406
+        },
+        "prompt": "Line from the type chart notes:\n\"D. Normal damage against every other type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 41,
+      "from": "analyst",
+      "to": "verifier",
+      "kind": "handoff",
+      "content": {
+        "attack": "Normal",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "passage_title": "Normal-type attacks"
+      }
+    },
+    {
+      "step": 42,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0284,
+          "no": 0.9716
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: none.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 43,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0204,
+          "no": 0.9796
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Rock-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 44,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0071,
+          "no": 0.9929
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Ghost-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 45,
+      "from": "verifier",
+      "to": "analyst",
+      "kind": "verdict",
+      "content": {
+        "accepted": true,
+        "line": "D"
+      }
+    },
+    {
+      "step": 46,
+      "from": "analyst",
+      "to": "coordinator",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_3",
+        "attack": "Normal",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "multiplier": 1.0,
+        "verified": true,
+        "revisions": 0
+      }
+    },
+    {
+      "step": 47,
+      "from": "coordinator",
+      "to": "analyst",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_4",
+        "attack": "Water",
+        "defend": "Fighting"
+      }
+    },
+    {
+      "step": 48,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "decide",
+        "output": "yes",
+        "probs": {
+          "yes": 0.9519,
+          "no": 0.0481
+        },
+        "prompt": "Question: how effective is a Water-type attack against a Fighting-type Pokemon?\n\nBefore answering, do you need to check the type chart notes with type_lookup? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 49,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "query",
+        "output": "type_lookup Water-type vs Fighting-type",
+        "prompt": "Question: how effective is a Water-type attack against a Fighting-type Pokemon?\nEach section of the type chart notes describes the attacks of ONE attacking type.\nWrite the search query for type_lookup: the name of the section you need.\nQUERY:"
+      }
+    },
+    {
+      "step": 50,
+      "from": "analyst",
+      "to": "type_lookup",
+      "kind": "tool_call",
+      "content": {
+        "query": "type_lookup Water-type vs Fighting-type"
+      }
+    },
+    {
+      "step": 51,
+      "from": "type_lookup",
+      "to": "analyst",
+      "kind": "tool_result",
+      "content": {
+        "title": "Water-type attacks",
+        "text": "A. Super effective against: Fire-type, Ground-type, Rock-type.\nB. Not very effective against: Water-type, Grass-type.\nC. No effect on: none.\nD. Normal damage against every other type."
+      }
+    },
+    {
+      "step": 52,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1591,
+          "no": 0.8409
+        },
+        "prompt": "Line from the type chart notes:\n\"A. Super effective against: Fire-type, Ground-type, Rock-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 53,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1023,
+          "no": 0.8977
+        },
+        "prompt": "Line from the type chart notes:\n\"B. Not very effective against: Water-type, Grass-type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 54,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.1105,
+          "no": 0.8895
+        },
+        "prompt": "Line from the type chart notes:\n\"C. No effect on: none.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 55,
+      "from": "analyst",
+      "to": "analyst",
+      "kind": "llm",
+      "content": {
+        "template": "line",
+        "output": "no",
+        "probs": {
+          "yes": 0.3594,
+          "no": 0.6406
+        },
+        "prompt": "Line from the type chart notes:\n\"D. Normal damage against every other type.\"\nIs Fighting-type listed in this line? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 56,
+      "from": "analyst",
+      "to": "verifier",
+      "kind": "handoff",
+      "content": {
+        "attack": "Water",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "passage_title": "Water-type attacks"
+      }
+    },
+    {
+      "step": 57,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0224,
+          "no": 0.9776
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Fire-type, Ground-type, Rock-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 58,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0784,
+          "no": 0.9216
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: Water-type, Grass-type.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 59,
+      "from": "verifier",
+      "to": "verifier",
+      "kind": "llm",
+      "content": {
+        "template": "check",
+        "output": "no",
+        "probs": {
+          "yes": 0.0284,
+          "no": 0.9716
+        },
+        "prompt": "Examples:\nList: Water-type, Flying-type.\nDoes the list contain Flying-type? yes\nList: Grass-type, Electric-type.\nDoes the list contain Ground-type? no\nList: none.\nDoes the list contain Fire-type? no\nList: none.\nDoes the list contain Fighting-type? Reply with exactly one word: yes or no."
+      }
+    },
+    {
+      "step": 60,
+      "from": "verifier",
+      "to": "analyst",
+      "kind": "verdict",
+      "content": {
+        "accepted": true,
+        "line": "D"
+      }
+    },
+    {
+      "step": 61,
+      "from": "analyst",
+      "to": "coordinator",
+      "kind": "handoff",
+      "content": {
+        "move": "MOVE_4",
+        "attack": "Water",
+        "defend": "Fighting",
+        "answer": "normal damage",
+        "multiplier": 1.0,
+        "verified": true,
+        "revisions": 0
+      }
+    },
+    {
+      "step": 62,
+      "from": "coordinator",
+      "to": "calculator",
+      "kind": "tool_call",
+      "content": {
+        "effectiveness": {
+          "MOVE_1": 2.0,
+          "MOVE_2": 1.0,
+          "MOVE_3": 1.0,
+          "MOVE_4": 1.0
+        }
+      }
+    },
+    {
+      "step": 63,
+      "from": "calculator",
+      "to": "coordinator",
+      "kind": "tool_result",
+      "content": [
+        {
+          "action": "MOVE_1",
+          "name": "Psybeam",
+          "score": 130.0
+        },
+        {
+          "action": "MOVE_2",
+          "name": "Ice Beam",
+          "score": 95.0
+        },
+        {
+          "action": "MOVE_3",
+          "name": "Strength",
+          "score": 80.0
+        },
+        {
+          "action": "MOVE_4",
+          "name": "BubbleBeam",
+          "score": 65.0
+        }
+      ]
+    },
+    {
+      "step": 64,
+      "from": "coordinator",
+      "to": "coordinator",
+      "kind": "llm",
+      "content": {
+        "template": "final",
+        "output": "MOVE_1",
+        "probs": {
+          "MOVE_1": 0.9025,
+          "MOVE_2": 0.0687,
+          "MOVE_3": 0.0067,
+          "MOVE_4": 0.0221
+        },
+        "prompt": "PLAYER\nHP: 94%\nTypes: Flying\nSpeed: 77\n\nOPPONENT\nHP: 52%\nTypes: Fighting\nSpeed: 40\n\nAVAILABLE MOVES\nMOVE_1: Psybeam | Type=Psychic | Power=65 | Accuracy=100% | PP=13\nMOVE_2: Ice Beam | Type=Ice | Power=95 | Accuracy=100% | PP=22\nMOVE_3: Strength | Type=Normal | Power=80 | Accuracy=100% | PP=10\nMOVE_4: BubbleBeam | Type=Water | Power=65 | Accuracy=100% | PP=18\n\nThe Type Analyst and the damage calculator produced this table.\nscore = power x accuracy x STAB x type effectiveness.\nMOVE_1 Psybeam (Psychic): power 65, accuracy 100%, STAB 1.0, effectiveness x2 -> score 130\nMOVE_2 Ice Beam (Ice): power 95, accuracy 100%, STAB 1.0, effectiveness x1 -> score 95\nMOVE_3 Strength (Normal): power 80, accuracy 100%, STAB 1.0, effectiveness x1 -> score 80\nMOVE_4 BubbleBeam (Water): power 65, accuracy 100%, STAB 1.0, effectiveness x1 -> score 65\n\nRows are sorted from highest to lowest score, so the first row is the best move. Reply with the label of the first row."
+      }
+    },
+    {
+      "step": 65,
+      "from": "coordinator",
+      "to": "environment",
+      "kind": "stop",
+      "content": {
+        "action": "MOVE_1"
+      }
+    }
+  ]
+}
